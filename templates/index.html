@@ -1,41 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tailwind Flask</title>
-    <link rel="stylesheet" href="{{ url_for('static',filename='dist/css/output.css') }}">
-</head>
-
-<body>
-
-
+{% block content %}
+    <div class="flex center-justified">
+        <form id='form' method="get">
+            <input type='file' name='file' multiple>
+            <button type="submit" class="btn btn-primary">
+                Upload
+            </button>
+            <progress id='progress' value='0' max='100'></progress>
+        </form>
+    </div>
 
 
-<!-- Area to upload files using HTMX -->
-{#<div class="flex items-center justify-center w-1/2 absolute -translate-y-1/2 -translate-x-1/2 top-2/4 left-1/2">#}
-{#    <label for="file"#}
-{#           class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">#}
-{#        <div class="flex flex-col items-center justify-center pt-5 pb-6">#}
-{#            <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor"#}
-{#                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">#}
-{#                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"#}
-{#                      d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>#}
-{#            </svg>#}
-{#            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Drag and drop some files</span>#}
-{#                or click to upload</p>#}
-{#            <p class="text-xs text-gray-500 dark:text-gray-400"></p>#}
-{#        </div>#}
-{#        <form action="/" method="POST" enctype="multipart/form-data">#}
-{#            <input id="file" name="file" type="file" class="hidden" hx-post="change"/>#}
-{#        </form>#}
-{#    </label>#}
-{#</div>#}
-{##}
-{#<!-- HTMX library -->#}
-{#<script src="https://unpkg.com/htmx.org/dist/htmx.min.js"></script>#}
-{##}
-{#</body>#}
-{#</html>#}
+<script type="text/javascript">
+window.onload = function () {
+  const mainForm = document.getElementById('form');
+  mainForm.onsubmit = function(event) {
+    event.preventDefault();
+    const formData = new FormData(mainForm);
+
+    // Get the files input element
+    const fileInput = document.querySelector('input[type="file"]');
+    // Get the selected files
+    const files = fileInput.files;
+
+    // Loop through the selected files and append each one to the form data
+    for (let i = 0; i < files.length; i++) {
+      formData.append('file[]', files[i]);
+    }
+
+    fetch("/process", {
+      method: "POST",
+      body: formData
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Error uploading file');
+      }
+    })
+    .then(data => {
+      // Update the table with the new HTML
+      const tableBody = document.querySelector('#data tbody');
+      tableBody.innerHTML = data.table_html;
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  }
+}
+
+</script>
+
+    <!-- table -->
+    <div class="flex justify-center">
+        <table id="data" class="table-auto">
+            <thead>
+            <tr>
+                <th>File name</th>
+                <th>Date uploaded</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for entry in uploads %}
+                <tr>
+                    <td>{{ entry.name }}</td>
+                    <td>{{ entry.time }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

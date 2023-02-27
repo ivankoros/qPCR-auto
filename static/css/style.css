@@ -1,14 +1,14 @@
-body, .container {
-  margin: 0;
-  padding: 0;
-}
+/*body, .container {*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*}*/
 
-.table, .table-dark {
-    float: right !important;
-    width: 30% !important;
-    border: solid 2px cornflowerblue !important;
-    margin-left: 0px !important;
-}
+/*.table, .table-dark {*/
+/*    float: right !important;*/
+/*    width: 30% !important;*/
+/*    border: solid 2px cornflowerblue !important;*/
+/*    margin-left: 0px !important;*/
+/*}*/
 
 /*.upload-container {*/
 /*    display: flex;*/
