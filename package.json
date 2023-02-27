@@ -6,5 +6,15 @@
   },
   "dependencies": {
     "flowbite": "^1.6.3"
-  }
+  },
+  "scripts": {
+    "build": "tailwindcss -i static/css/src/input.css -o static/css/dist/output.css",
+    "watch": "tailwindcss -i static/css/src/input.css -o static/css/dist/output.css --watch"
+  },
+  "name": "qpcr-auto1",
+  "version": "1.0.0",
+  "main": "tailwind.config.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

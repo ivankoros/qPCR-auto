@@ -1,75 +1,84 @@
-{% extends "base.html" %}
-
-{% block content %}
-    <div class="flex center-justified">
-        <form id='form' method="get">
-            <input type='file' name='file' multiple>
-            <button type="submit" class="btn btn-primary">
-                Upload
-            </button>
-            <progress id='progress' value='0' max='100'></progress>
-        </form>
-    </div>
-
+{% extends "base.html" %} {% block content %}
+<div class="center-justified flex">
+  <form id="form" method="get">
+    <input type="file" name="file" multiple />
+    <button type="submit" class="btn btn-primary">Upload</button>
+    <progress id="progress" value="0" max="100"></progress>
+  </form>
+</div>
 
 <script type="text/javascript">
-window.onload = function () {
-  const mainForm = document.getElementById('form');
-  mainForm.onsubmit = function(event) {
-    event.preventDefault();
-    const formData = new FormData(mainForm);
+  window.onload = function () {
+    const mainForm = document.getElementById("form");
+    mainForm.onsubmit = function (event) {
+      event.preventDefault();
+      const formData = new FormData(mainForm);
 
-    // Get the files input element
-    const fileInput = document.querySelector('input[type="file"]');
-    // Get the selected files
-    const files = fileInput.files;
+      // Get the files input element
+      const fileInput = document.querySelector('input[type="file"]');
+      // Get the selected files
+      const files = fileInput.files;
 
-    // Loop through the selected files and append each one to the form data
-    for (let i = 0; i < files.length; i++) {
-      formData.append('file[]', files[i]);
-    }
-
-    fetch("/process", {
-      method: "POST",
-      body: formData
-    })
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error('Error uploading file');
+      // Loop through the selected files and append each one to the form data
+      for (let i = 0; i < files.length; i++) {
+        formData.append("file[]", files[i]);
       }
-    })
-    .then(data => {
-      // Update the table with the new HTML
-      const tableBody = document.querySelector('#data tbody');
-      tableBody.innerHTML = data.table_html;
-    })
-    .catch(error => {
-      console.error(error);
-    });
-  }
-}
 
+      fetch("/process", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("Error uploading file");
+          }
+        })
+        .then((data) => {
+          // Update the table with the new HTML
+          const tableBody = document.querySelector("#data tbody");
+          tableBody.innerHTML = data.table_html;
+          const popup = document.getElementById("popup");
+          popup.style.display = "block";
+          setTimeout(() => {
+            popup.style.display = "none";
+          }, 3000);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+  };
 </script>
 
-    <!-- table -->
-    <div class="flex justify-center">
-        <table id="data" class="table-auto">
-            <thead>
-            <tr>
-                <th>File name</th>
-                <th>Date uploaded</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for entry in uploads %}
-                <tr>
-                    <td>{{ entry.name }}</td>
-                    <td>{{ entry.time }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
+<!-- table -->
+<div class="flex justify-center m-28">
+  <table id="data" class="table-auto">
+    <thead>
+      <tr>
+        <th>File name</th>
+        <th>Date uploaded</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for entry in uploads %}
+      <tr>
+        <td>{{ entry.name }}</td>
+        <td>{{ entry.time }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<!-- popup -->
+<div id="popup" class="bg-indigo-900 text-center py-4 lg:px-4" style="display: none;">
+  <div class="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
+    <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">New</span>
+    <span class="font-semibold mr-2 text-left flex-auto">Get the coolest t-shirts from our brand new store</span>
+    <svg class="fill-current opacity-75 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/></svg>
+  </div>
+</div>
+
 {% endblock %}

@@ -1,20 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tailwind Flask</title>
-    <link rel="stylesheet" href="{{ url_for('static',filename='dist/css/output.css') }}">
-    <script src="https://unpkg.com/htmx.org@1.8.5" integrity="sha384-7aHh9lqPYGYZ7sTHvzP1t3BAfLhYSTy9ArHdP3Xsr9/3TlGurYgcPBoFmXX2TX/w"
-            crossorigin="anonymous"></script>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../static/css/dist/output.css" rel="stylesheet" />
+    <script
+      src="https://unpkg.com/htmx.org@1.8.5"
+      integrity="sha384-7aHh9lqPYGYZ7sTHvzP1t3BAfLhYSTy9ArHdP3Xsr9/3TlGurYgcPBoFmXX2TX/w"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
     <div class="container">
-        <h1>{{ title }}</h1>
-        <hr>
-        {% block content %}{% endblock %}
+      <h1>{{ title }}</h1>
+      <hr />
+      {% block content %}{% endblock %}
     </div>
     {% block scripts %}{% endblock %}
-</body>
+  </body>
 </html>
