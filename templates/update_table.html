@@ -1,6 +1,7 @@
 {% for entry in uploads %}
-<tr>
-  <td>{{ entry.name }}</td>
-  <td>{{ entry.time }}</td>
-</tr>
+    <tr>
+        <td>{{ entry.name }}</td>
+        <td>{{ entry.time.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+    </tr>
 {% endfor %}
+

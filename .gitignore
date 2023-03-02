@@ -177,3 +177,6 @@ poetry.toml
 /uploads/DP_IR_vs_DP_Sham_Filtered.xlsx
 /uploads/DP_Sham_vs_CD_Sham_Filtered.xlsx
 /uploads/data.json
+/config.py
+/database.db
+/.idea/dataSources.xml
