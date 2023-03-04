@@ -41,13 +41,11 @@ class FileUploads(db.Model):
     name = db.Column(db.String(100), nullable=False)
     time = db.Column(db.String(100), nullable=False)
 
-
 @app.route('/')
 @login_required
 def home():
     uploads = FileUploads.query.all()
     return render_template('index.html', uploads=uploads)
-
 
 class LoginForm(FlaskForm):
     username = StringField(label='Username', validators=[InputRequired(), Length(min=1, max=50)])
@@ -67,38 +65,36 @@ def login():
             login_user(user)
             uploads = FileUploads.query.all()
             return render_template('index.html', uploads=uploads)
-        #
-        #
-        # if password == user.password:
-
-        # else:
-        #     print('Invalid password')
 
     return render_template('login.html')
-
-
-# File Uploads
-
 
 @app.route('/process', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
         files = request.files.getlist('file')
 
-        for file in files:
-            file_name = secure_filename(file.filename)
-            new_entry = FileUploads(name=file_name,
-                                    time=str(datetime.datetime.now().replace(microsecond=0, second=0)))
-            db.session.add(new_entry)
-            db.session.commit()
-            print("File uploaded: " + file_name)
+        if files[0].filename == '':
+            flash('No selected file')
 
-        uploads = FileUploads.query.all()
-        update_table = render_template('update_table.html', uploads=uploads)
+        else:
+            for file in files:
+                file_name = secure_filename(file.filename)
+                new_entry = FileUploads(name=file_name,
+                                        time=str(datetime.datetime.now().replace(microsecond=0, second=0)))
+                db.session.add(new_entry)
+                db.session.commit()
+                print("File uploaded: " + file_name)
 
-        return jsonify({'update_table': update_table})
+            uploads = FileUploads.query.all()
+            update_table = render_template('update_table.html', uploads=uploads)
+
+            return jsonify({'update_table': update_table})
 
     return render_template('index.html')
+
+@app.route('/test')
+def test():
+    return render_template('tailwindherotest.html')
 
 
 if __name__ == '__main__':

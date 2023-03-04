@@ -1,13 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+    darkMode: "class",
     content: [
-        "./templates/**/*.html",
         "./templates/**/*.{html,js}",
         "./node_modules/flowbite/**/*.js",
     ],
-    daisyui: {
-        themes: ["light", "dark", "cupcake", "bumblebee", "emerald", "corporate", "synthwave", "retro", "cyberpunk", "valentine", "halloween", "garden", "forest", "aqua", "lofi", "pastel", "fantasy", "wireframe", "black", "luxury", "dracula", "cmyk", "autumn", "business", "acid", "lemonade", "night", "coffee", "winter"],
-    },
     theme: {
         extend: {
             colors: {
@@ -26,8 +23,10 @@ module.exports = {
             }
         },
     },
-    plugins: [require("flowbite/plugin"),
-        require("daisyui")],
+    plugins: [
+        require("flowbite/plugin"),
+        require('prettier-plugin-tailwindcss')
+        ],
     fontFamily: {
         'body': [
             'Inter',

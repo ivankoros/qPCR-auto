@@ -1,79 +1,103 @@
-{% extends "base.html" %} {% block content %}
-
-    <canvas id="myCanvas" width="200" height="200"></canvas>
-    <div class="center-justified flex">
+{% extends "base.html" %}
+{% block content %}
+    <div id="theme-toggle-container" class="bg-gray-50 dark:bg-gray-900">
+        <button id="theme-toggle" type="button"
+                class="bg-gray-50 dark:bg-gray-900 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 border border-gray-700 dark:border-gray-900">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+            </svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                      fill-rule="evenodd" clip-rule="evenodd"></path>
+            </svg>
+        </button>
+    </div>
+    <div class="flex justify-between py-6 px-6">
         <form id="form" method="get">
-            <input type="file" name="file" multiple/>
-            <button type="submit" class="btn btn-primary">Upload</button>
-            <progress id="progress" value="0" max="100"></progress>
+            <input type="file" name="file"
+                   class="text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"/>
+            <button type="submit"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                Submit File
+            </button>
         </form>
     </div>
-
-<script type="text/javascript">
-window.onload = function() {
-  const mainForm = document.getElementById("form");
-
-  mainForm.addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    const formData = new FormData(mainForm);
-
-    const fileInput = document.querySelector('input[type="file"]');
-    const files = fileInput.files;
-
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      if (!formData.getAll('file').includes(file)) {
-        formData.append("file", file);
-      }
-    }
-
-    fetch("/process", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("Error uploading file");
-        }
-      })
-      .then((data) => {
-        // Handle the response data here
-        const tableBody = document.querySelector("#data tbody");
-        tableBody.innerHTML = data.update_table;
-
-        // Reset file input value
-        fileInput.value = "";
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  });
-};
-
-</script>
-
-
     <!-- table -->
-    <div class="flex justify-center m-28">
-        <table id="data" class="table-auto">
-            <thead>
+    <div class="absolute inset-y-0 right-0 mx-overflow-auto">
+        <table id="data" class="w-1/2 text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th>File name</th>
-                <th>Date uploaded</th>
+                <th scope="col" class="px-6 py-3">
+                    File name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Date uploaded
+                </th>
             </tr>
             </thead>
             <tbody>
             {% for entry in uploads %}
-                <tr>
-                    <td>{{ entry.name }}</td>
-                    <td>{{ entry.time }}</td>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ entry.name }}</td>
+                    <td class="px-6 py-4">{{ entry.time }}</td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
     </div>
+    <div class="flex justify-between">
+    <textarea id="message" rows="4"
+              class="block p-2.5 w-2/5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Leave a comment..."></textarea>
+        <button type="submit"
+                class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue">
+            Submit
+        </button>
+    </div>
+    <script type="text/javascript">
+        window.onload = function () {
+            const mainForm = document.getElementById("form");
 
+            mainForm.addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                const formData = new FormData(mainForm);
+
+                const fileInput = document.querySelector('input[type="file"]');
+                const files = fileInput.files;
+
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    if (!formData.getAll('file').includes(file)) {
+                        formData.append("file", file);
+                    }
+                }
+
+                fetch("/process", {
+                    method: "POST",
+                    body: formData,
+                })
+                    .then((response) => {
+                        if (response.ok) {
+                            return response.json();
+                        } else {
+                            throw new Error("Error uploading file");
+                        }
+                    })
+                    .then((data) => {
+                        // Handle the response data here
+                        const tableBody = document.querySelector("#data tbody");
+                        tableBody.innerHTML = data.update_table;
+
+                        // Reset file input value
+                        fileInput.value = "";
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            });
+        };
+    </script>
 {% endblock %}
