@@ -2,9 +2,12 @@
 module.exports = {
     content: [
         "./templates/**/*.html",
-        "./src/**/*.{html,js}",
+        "./templates/**/*.{html,js}",
         "./node_modules/flowbite/**/*.js",
     ],
+    daisyui: {
+        themes: ["light", "dark", "cupcake", "bumblebee", "emerald", "corporate", "synthwave", "retro", "cyberpunk", "valentine", "halloween", "garden", "forest", "aqua", "lofi", "pastel", "fantasy", "wireframe", "black", "luxury", "dracula", "cmyk", "autumn", "business", "acid", "lemonade", "night", "coffee", "winter"],
+    },
     theme: {
         extend: {
             colors: {
@@ -23,7 +26,8 @@ module.exports = {
             }
         },
     },
-    plugins: [require("flowbite/plugin")]
+    plugins: [require("flowbite/plugin"),
+        require("daisyui")],
     fontFamily: {
         'body': [
             'Inter',
