@@ -27,11 +27,17 @@
             </form>
         </div>
         <!-- table -->
-        <div class="absolute top-12 right-0 bottom-12 max-h-screen border-red-700 border right-6 overflow-auto min-w-fit">
+        <style>
+            .no-scrollbar::-webkit-scrollbar {
+                display: none;
+            }
+        </style>
+        <div class="absolute top-12 right-0 bottom-12 max-h-screen border-red-700 border right-6 overflow-auto no-scrollbar min-w-fit ">
             <div class="">
                 <table id="data"
-                       class="right-0 text-sm text-gray-500 dark:text-gray-400 overflow-auto overscroll-hidden">
+                       class="right-0 text-sm text-gray-500 dark:text-gray-400">
                     <thead>
+
                     <tr>
                         <th class="sticky top-0 px-3 py-3 bg-blue-700 hover:bg-blue-800 text-white text-md">
                             File name
@@ -41,7 +47,7 @@
                         </th>
                     </tr>
                     </thead>
-                    <tbody class="h-96 overscroll-auto">
+                    <tbody class="h-96">
                     {% for entry in uploads %}
                         <tr class="dark:bg-gray-800 dark:border-gray-700">
                             <td class="px-3 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ entry.name }}</td>

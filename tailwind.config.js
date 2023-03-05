@@ -25,8 +25,21 @@ module.exports = {
     },
     plugins: [
         require("flowbite/plugin"),
-        require('prettier-plugin-tailwindcss')
-        ],
+        require('prettier-plugin-tailwindcss'),
+        plugin(function ({ addUtilities }) {
+            addUtilities({
+                '.scrollbar-hide': {
+                    /* IE and Edge */
+                    '-ms-overflow-style': 'none',
+                    /* Firefox */
+                    'scrollbar-width': 'none',
+                    /* Chrome, Safari, and Opera */
+                    '&::-webkit-scrollbar': {
+                        display: 'none',
+                    }
+                }
+            })
+            })],
     fontFamily: {
         'body': [
             'Inter',
