@@ -2,7 +2,7 @@
 {% block content %}
     <body class="bg-gray-50 dark:bg-gray-900">
     <div class="flex flex-col h-screen bg-gray-50 dark:bg-gray-900">
-        <div id="theme-toggle-container" class="bg-gray-50 dark:bg-gray-900">
+        <div id="theme-toggle-container" class="bg-gray-50 dark:bg-gray-900 border-red-700 border">
             <button id="theme-toggle" type="button"
                     class="bg-gray-50 dark:bg-gray-900 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 border border-gray-700 dark:border-gray-900">
                 <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
@@ -32,11 +32,14 @@
                 display: none;
             }
         </style>
-        <div class="absolute top-12 right-0 bottom-12 max-h-screen border-red-700 border right-6 overflow-auto no-scrollbar min-w-fit ">
+        <div class="absolute top-12 right-0 bottom-12 max-h-screen border-red-700 border rounded-lg right-6 overflow-auto no-scrollbar min-w-fit ">
             <div class="">
                 <table id="data"
-                       class="right-0 text-sm text-gray-500 dark:text-gray-400">
-                    <thead>
+                       class="right-0 text-sm text-gray-500 dark:text-gray-400 animated fadeIn">
+                <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+            Uploads
+            <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Scroll to browse qPCR uploads and related info - click an upload for more details.</p>
+                    <thead class="rounded-lg">
 
                     <tr>
                         <th class="sticky top-0 px-3 py-3 bg-blue-700 hover:bg-blue-800 text-white text-md">
@@ -62,8 +65,7 @@
         <div class="absolute left-6 bottom-12">
             <div class="flex flex-col h-32 w-32 border-red-700 border">
                 <div class="">
-    <textarea id="message" rows="4" type="text"
-              class="w-56 p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+    <textarea id="message" class="resize-none w-56 p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Leave a comment..."></textarea>
                 </div>
                 <div class="">
@@ -74,6 +76,7 @@
                 </div>
             </div>
         </div>
+{# Script for updated table on submit of file#}
         <script type="text/javascript">
             window.onload = function () {
                 const mainForm = document.getElementById("form");

@@ -180,3 +180,4 @@ poetry.toml
 /config.py
 /database.db
 /.idea/dataSources.xml
+/data/

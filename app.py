@@ -45,6 +45,7 @@ class FileUploads(db.Model):
 @login_required
 def home():
     uploads = FileUploads.query.all()
+    uploads = sorted(uploads, key=lambda x: x.time, reverse=True)
     return render_template('index.html', uploads=uploads)
 
 class LoginForm(FlaskForm):
@@ -64,6 +65,7 @@ def login():
         else:
             login_user(user)
             uploads = FileUploads.query.all()
+            uploads = sorted(uploads, key=lambda x: x.time, reverse=True)
             return render_template('index.html', uploads=uploads)
 
     return render_template('login.html')
@@ -79,23 +81,21 @@ def upload_file():
         else:
             for file in files:
                 file_name = secure_filename(file.filename)
+                time = str(datetime.datetime.now().replace(microsecond=0))
+                #formatted_time = time.strftime("%d-%m-%Y @ %I:%M %p")
                 new_entry = FileUploads(name=file_name,
-                                        time=str(datetime.datetime.now().replace(microsecond=0, second=0)))
+                                        time=str(time))
                 db.session.add(new_entry)
                 db.session.commit()
                 print("File uploaded: " + file_name)
 
             uploads = FileUploads.query.all()
+            uploads = sorted(uploads, key=lambda x: x.time, reverse=True)
             update_table = render_template('update_table.html', uploads=uploads)
 
             return jsonify({'update_table': update_table})
 
     return render_template('index.html')
-
-@app.route('/test')
-def test():
-    return render_template('tailwindherotest.html')
-
 
 if __name__ == '__main__':
     app.run(debug=True)
