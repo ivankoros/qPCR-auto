@@ -181,3 +181,4 @@ poetry.toml
 /database.db
 /.idea/dataSources.xml
 /data/
+/test.xlsx
