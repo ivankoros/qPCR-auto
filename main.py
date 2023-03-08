@@ -19,6 +19,7 @@ from flask_login import (
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:password@localhost:3306/database'
 app.secret_key = 'your_secret_key_here'
 
 db = SQLAlchemy(app)
