@@ -10,3 +10,6 @@ Raw qPCR data is mass-analyzed to provide statistical (pandas, polars, pyjanitor
 * Designed responsive user experience with Vanilla JS (ES6) and HTMX (1.8.5)
 * Fashioned sleek and modern styling with Tailwind CSS (3.0) and Flowbite
 * Implemented seamless cloud integration with Google Cloud
+
+## Current state:
+![Animation](Animation.gif)
