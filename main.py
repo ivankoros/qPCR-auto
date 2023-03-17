@@ -8,6 +8,7 @@ from wtforms.validators import InputRequired, Length, ValidationError
 from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
 import os
+import bcrypt
 
 from flask_login import (
     UserMixin,
@@ -41,6 +42,12 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
+
+    def set_password(self, password):
+        self.password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+
+    def check_password(self, password):
+        return bcrypt.checkpw(password.encode('utf-8'), self.password.encode('utf-8'))
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -84,6 +91,8 @@ def login():
         user = User.query.filter_by(username=username).first()
         if not user:
             flash('Invalid username')
+        elif not user.check_password(password):
+            flash('Invalid password')
         else:
             login_user(user)
             uploads = FileUploads.query.all()
@@ -91,6 +100,30 @@ def login():
             return render_template('index.html', uploads=uploads)
 
     return render_template('login.html')
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        registration_key = os.getenv('REGISTRATION_KEY')
+
+        existing_user = User.query.filter_by(username=username).first()
+        if existing_user:
+            flash('Username already exists')
+        if registration_key != request.form['registration_key']:
+            flash('Invalid registration key')
+        else:
+            new_user = User(username=username)
+            new_user.set_password(password)
+            db.session.add(new_user)
+            db.session.commit()
+            flash('User created successfully')
+            return redirect(url_for('login'))
+
+    return render_template('register.html')
+
 
 # Process route that handles the file uploads and adds them to the database with the file name and current time
 @app.route('/process', methods=['GET', 'POST'])
