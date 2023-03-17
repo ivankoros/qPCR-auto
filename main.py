@@ -4,7 +4,7 @@ import datetime
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import InputRequired, Length, ValidationError
+from wtforms.validators import InputRequired, Length, ValidationError, Regexp
 from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
 import os
@@ -63,14 +63,26 @@ class FileUploads(db.Model):
 @app.route('/')
 @login_required
 def home():
-    uploads = FileUploads.query.all()
-    uploads = sorted(uploads, key=lambda x: x.time, reverse=True)
-    return render_template('index.html', uploads=uploads)
+    uploads = FileUploads.query.all()  # Query the database for latest version
+    uploads = sorted(uploads, key=lambda x: x.time, reverse=True)  # Sort the uploads by time
+    return render_template('index.html', uploads=uploads)  # Render the home page with the uploads on the table
 
 # Login page input form and validation using Flask-WTF
+# TODO add context for password and username requirements
 class LoginForm(FlaskForm):
-    username = StringField(label='Username', validators=[InputRequired(), Length(min=1, max=50)])
-    password = PasswordField(label='Password', validators=[InputRequired(), Length(min=1, max=60)])
+    username = StringField(label='Username',
+                           validators=[InputRequired(),
+                                       Length(min=1, max=50),
+                                       Regexp('^[A-Za-z0-9_]+$',
+                                              message="Username must contain only letters, numbers, or underscores.")
+                                       ])
+    password = PasswordField(label='Password',
+                             validators=[InputRequired(),
+                                         Length(min=1, max=50),
+                                         Regexp('^[A-Za-z0-9_]+$',
+                                                message="Password must contain only letters, numbers, or underscores.")
+                                        ])
+
     submit = SubmitField(label='Login')
 
 # Login page that displays the login form and validates the user if they are in the database
