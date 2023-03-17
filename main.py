@@ -69,6 +69,14 @@ class LoginForm(FlaskForm):
 # Login page that displays the login form and validates the user if they are in the database
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    """Login route and validation
+
+    Checks if the user is in the database and if they are, logs them in.
+    If the user is not in the database, they are redirected to the login page.
+
+    Once the user is validated and redirected, the file table is queried and rendered.
+
+    """
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -87,6 +95,12 @@ def login():
 # Process route that handles the file uploads and adds them to the database with the file name and current time
 @app.route('/process', methods=['GET', 'POST'])
 def upload_file():
+    """File upload process route
+
+    When a file is uploaded, the file name and current time is added to the database.
+    The database is then queried and the table is updated with the new entry with javascript.
+
+    """
     if request.method == 'POST':
         files = request.files.getlist('file')
 
