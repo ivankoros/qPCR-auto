@@ -16,7 +16,10 @@
                 </svg>
             </button>
         </div>
-        <div class="flex justify-between py-6 pl-6 w-1/2 max-w-fit border-red-700 border">
+    <!-- the choose file dialog -->
+    <div class="flex flex-auto flex-col justify-between flex-1 border-red-700 border w-fit pl-6">
+
+        <div class="flex flex-row justify-end w-fit border-red-700 border pt-2">
             <form id="form" method="get">
                 <input type="file" name="file"
                        class="text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"/>
@@ -26,6 +29,23 @@
                 </button>
             </form>
         </div>
+<!-- the comment box -->
+{#                <div class="">#}
+{#            <div class="flex flex-col h-fit w-fit border-red-700 border">#}
+{#                <div class="">#}
+{#    <textarea id="message" class="resize-none w-56 p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"#}
+{#              placeholder="Leave a comment..."></textarea>#}
+{#                </div>#}
+{#                <div class="">#}
+{#                    <button type="submit"#}
+{#                            class="w-56 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">#}
+{#                        Submit Comment#}
+{#                    </button>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+
+    </div>
         <!-- table -->
         <style>
             .no-scrollbar::-webkit-scrollbar {
@@ -62,20 +82,7 @@
             </div>
         </div>
         <!-- end table -->
-        <div class="absolute left-6 bottom-12">
-            <div class="flex flex-col h-32 w-32 border-red-700 border">
-                <div class="">
-    <textarea id="message" class="resize-none w-56 p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Leave a comment..."></textarea>
-                </div>
-                <div class="">
-                    <button type="submit"
-                            class="w-56 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                        Submit Comment
-                    </button>
-                </div>
-            </div>
-        </div>
+
 {# Script for updated table on submit of file#}
         <script type="text/javascript">
             window.onload = function () {
@@ -108,11 +115,10 @@
                             }
                         })
                         .then((data) => {
-                            // Handle the response data here
                             const tableBody = document.querySelector("#data tbody");
                             tableBody.innerHTML = data.update_table;
 
-                            // Reset file input value
+                            // Reset file input value (clears selected files)
                             fileInput.value = "";
                         })
                         .catch((error) => {
