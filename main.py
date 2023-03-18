@@ -14,8 +14,6 @@ from flask_login import (
     UserMixin,
     login_user,
     LoginManager,
-    current_user,
-    logout_user,
     login_required,
 )
 
@@ -69,23 +67,52 @@ def home():
 
 # Login page input form and validation using Flask-WTF
 # TODO add context for password and username requirements
+# TODO add validationerror usage for username and password
+
 class LoginForm(FlaskForm):
-    username = StringField(label='Username',
-                           validators=[InputRequired(),
-                                       Length(min=1, max=50),
-                                       Regexp('^[A-Za-z0-9_]+$',
-                                              message="Username must contain only letters, numbers, or underscores.")
-                                       ])
-    password = PasswordField(label='Password',
-                             validators=[InputRequired(),
-                                         Length(min=1, max=50),
-                                         Regexp('^[A-Za-z0-9_]+$',
-                                                message="Password must contain only letters, numbers, or underscores.")
-                                        ])
+    username = StringField(
+        label='Username',
+        validators=[
+            InputRequired(),
+            Length(min=1, max=50),
+            Regexp('^[A-Za-z0-9_]+$',
+                   message="Username must contain only letters, numbers, or underscores.")
+        ])
+    password = PasswordField(
+        label='Password',
+        validators=[
+            InputRequired(),
+            Length(min=1, max=50),
+            Regexp('^[A-Za-z0-9_]+$',
+                   message="Password must contain only letters, numbers, or underscores.")
+        ])
 
     submit = SubmitField(label='Login')
 
+
+class RegisterForm(FlaskForm):
+    username = StringField(
+        label='Username',
+        validators=[
+            InputRequired(),
+            Length(min=1, max=50),
+            Regexp(r'^[A-Za-z0-9_]+$',
+                   message="Username must contain only letters (A-Z) and digits (0-9)."),
+        ])
+    password = PasswordField(
+        label='Password',
+        validators=[
+            InputRequired(),
+            Length(min=1, max=60),
+            Regexp(r'^[A-Za-z0-9_]+$',
+                   message="Password must contain only letters (A-Z) and digits (0-9)."),
+        ])
+    submit = SubmitField(label='Register')
+
+
+
 # Login page that displays the login form and validates the user if they are in the database
+# TODO add a  registration class with validators for same things like pass length and regex
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     """Login route and validation
@@ -96,9 +123,11 @@ def login():
     Once the user is validated and redirected, the file table is queried and rendered.
 
     """
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+    form = LoginForm()  # Create an instance of the LoginForm class
+
+    if form.validate_on_submit():  # Change request.method == 'POST' to form.validate_on_submit()
+        username = form.username.data  # Access the username and password data from the form
+        password = form.password.data
 
         user = User.query.filter_by(username=username).first()
         if not user:
@@ -111,14 +140,15 @@ def login():
             uploads = sorted(uploads, key=lambda x: x.time, reverse=True)
             return render_template('index.html', uploads=uploads)
 
-    return render_template('login.html')
+    return render_template('login.html', form=form)
 
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+    form = RegisterForm()
+    if form.validate_on_submit():
+        username = form.username.data
+        password = form.password.data
         registration_key = os.getenv('REGISTRATION_KEY')
 
         existing_user = User.query.filter_by(username=username).first()
@@ -134,7 +164,8 @@ def register():
             flash('User created successfully')
             return redirect(url_for('login'))
 
-    return render_template('register.html')
+    return render_template('register.html', form=form)
+
 
 
 # Process route that handles the file uploads and adds them to the database with the file name and current time

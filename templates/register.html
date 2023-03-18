@@ -3,9 +3,10 @@
 {% block content %}
     <h1>Register</h1>
     <form action="{{ url_for('register') }}" method="post">
-        <input type="text" name="username" placeholder="Username" maxlength="50" required>
-        <input type="password" name="password" placeholder="Password" maxlength="50" required>
-        <input type="text" name="registration_key" placeholder="Registration Key" maxlength="100" required>
+        {{ form.csrf_token }}
+        {{ form.username.label }} {{ form.username }}
+        {{ form.password.label }} {{ form.password }}
+        <input type="text" name="registration_key" placeholder="Registration Key" required>
         <button type="submit">Register</button>
     </form>
 {% endblock %}
