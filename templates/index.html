@@ -32,7 +32,7 @@
                 display: none;
             }
         </style>
-        <div class="absolute top-12 right-0 bottom-12 max-h-screen border-red-700 border rounded-lg right-6 overflow-auto no-scrollbar min-w-fit ">
+        <div class="absolute top-12 right-0 bottom-12 max-h-screen border-red-700 border rounded-lg right-6 overflow-auto no-scrollbar w-fit max-w-2xl ">
             <div class="">
                 <table id="data"
                        class="right-0 text-sm text-gray-500 dark:text-gray-400 animated fadeIn">
@@ -42,19 +42,19 @@
                     <thead class="rounded-lg">
 
                     <tr>
-                        <th class="sticky top-0 px-3 py-3 bg-blue-700 hover:bg-blue-800 text-white text-md">
+                        <th class="sticky top-0 px-3 py-3 bg-blue-700 hover:bg-blue-800 text-white text-md break-after-auto">
                             File name
                         </th>
-                        <th class="sticky top-0 px-3 py-3 bg-blue-700 hover:bg-blue-800 text-white text-md">
+                        <th class="sticky top-0 px-3 py-3 bg-blue-700 hover:bg-blue-800 text-white text-md break-after-auto">
                             Date uploaded
                         </th>
                     </tr>
                     </thead>
                     <tbody class="h-96">
                     {% for entry in uploads %}
-                        <tr class="dark:bg-gray-800 dark:border-gray-700">
-                            <td class="px-3 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ entry.name }}</td>
-                            <td class="px-3 py-4">{{ entry.time }}</td>
+                        <tr class="dark:bg-gray-800 dark:border-gray-700 break-after-auto">
+                            <td class="px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ entry.name }}</td>
+                            <td class="px-3 py-2">{{ entry.time }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>
