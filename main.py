@@ -4,7 +4,7 @@ import datetime
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import InputRequired, Length, ValidationError, Regexp
+from wtforms.validators import InputRequired, Length, Regexp
 from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
 import os
@@ -66,8 +66,6 @@ def home():
     return render_template('index.html', uploads=uploads)  # Render the home page with the uploads on the table
 
 # Login page input form and validation using Flask-WTF
-# TODO add context for password and username requirements
-# TODO add validationerror usage for username and password
 
 class LoginForm(FlaskForm):
     username = StringField(
@@ -112,7 +110,6 @@ class RegisterForm(FlaskForm):
 
 
 # Login page that displays the login form and validates the user if they are in the database
-# TODO add a  registration class with validators for same things like pass length and regex
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     """Login route and validation
@@ -157,7 +154,7 @@ def register():
         if registration_key != request.form['registration_key']:
             flash('Invalid registration key')
         else:
-            new_user = User(username=username)
+            new_user = User()
             new_user.set_password(password)
             db.session.add(new_user)
             db.session.commit()
