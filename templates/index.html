@@ -17,47 +17,88 @@
             </button>
         </div>
         <!-- the choose file dialog + comment box flex left side -->
-        <div class="flex flex-auto flex-col space-y-2 border-red-700 border w-fit max-w-[480px] p-6 ml-6 bg-red-400 dark:bg-gray-800 rounded-lg transition-colors duration-300">
+        <div class="flex flex-auto flex-col space-y-6 border-red-700 border w-fit max-w-[480px] p-6 ml-6 bg-red-400 dark:bg-gray-800 rounded-lg transition-colors duration-300">
             <h2 class="p-2 text-xl font-semibold text-gray-900 dark:text-white border-red-700 border text-center bg-blue-700 rounded-lg">
                 File submission</h2>
             <!-- the choose file UPLOAD FORM -->
-<!-- upload boxes-->
-<div class="flex flex-row flex-auto justify-end border border-orange-700 max-h-36 space-x-6">
+            <!-- upload boxes-->
+            <div class="flex flex-row flex-auto justify-end border border-orange-700 max-h-32 space-x-6">
 
-<div class="flex items-center justify-center w-3/5">
-    <label for="dropzone-file" class="flex flex-col items-center justify-center text-center h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-        <div class="flex flex-col items-center justify-center p-4 pt-5 pb-6">
-            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">Click or drag to <span class="font-semibold">upload raw counts</span></p>
-        </div>
-        <input id="dropzone-file" type="file" class="hidden" />
-    </label>
-</div>
+                <div class="flex items-center justify-center w-3/5">
+                    <label for="dropzone-file"
+                           class="flex flex-col items-center justify-center text-center h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                        <div class="flex flex-col items-center justify-center p-4 pt-5 pb-6">
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Click or drag to <span
+                                    class="font-semibold">upload raw counts</span></p>
+                        </div>
+                        <input id="dropzone-file" type="file" class="hidden"/>
+                    </label>
+                </div>
 
-<div class="flex items-center justify-center w-3/5">
-    <label for="dropzone-file" class="flex flex-col items-center justify-center h-32 border-2 text-center border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-        <div class="flex flex-col items-center justify-center p-4 pt-5 pb-6">
-            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">Click or drag to <span class="font-semibold">upload plate diagram</span></p>
-        </div>
-        <input id="dropzone-file" type="file" class="hidden" />
-    </label>
-</div>
+                <div class="flex items-center justify-center w-3/5">
+                    <label for="dropzone-file"
+                           class="flex flex-col items-center justify-center h-32 border text-center border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                        <div class="flex flex-col items-center justify-center p-4 pt-5 pb-6">
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Click or drag to <span
+                                    class="font-semibold">upload plate diagram</span></p>
+                        </div>
+                        <input id="dropzone-file" type="file" class="hidden"/>
+                    </label>
+                </div>
 
-</div>
+            </div>
             <!-- end upload boxes-->
 
-            <!-- the ORIGINAL, LINKED choose file dialog -->
-{#            <div class="flex flex-row justify-end w-fit border-red-700 border pt-2">#}
-{#                <form id="form" method="get">#}
-{#                    <input type="file" name="file"#}
-{#                           class="text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"/>#}
-{#                    <button type="submit"#}
-{#                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">#}
-{#                        Submit File#}
-{#                    </button>#}
-{#                </form>#}
-{#            </div>#}
+            <!-- start checkboxes -->
+            <div class="flex flex-row space-x-6 h-56 w-full border border-red-700 justify-between">
 
-              <!-- END OF the ORIGINAL, LINKED choose file dialog -->
+                <div class="flex flex-col text-white border-red-700 border justify-evenly items-center w-3/5 p-4">
+<div class="flex items-center mb-4">
+    <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default checkbox</label>
+</div>
+<div class="flex items-center mb-4">
+    <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default checkbox</label>
+</div>
+<div class="flex items-center mb-4">
+    <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default checkbox</label>
+</div>
+                </div>
+
+                <div class="flex flex-col text-white border-red-700 border justify-evenly items-center  w-3/5 p-4">
+<div class="flex items-center mb-4">
+    <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default checkbox</label>
+</div>
+<div class="flex items-center mb-4">
+    <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default checkbox</label>
+</div>
+<div class="flex items-center mb-4">
+    <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default checkbox</label>
+</div>
+                </div>
+
+            </div>
+
+            <!-- end checkboxes -->
+
+            <!-- the ORIGINAL, LINKED choose file dialog -->
+            {#            <div class="flex flex-row justify-end w-fit border-red-700 border pt-2">#}
+            {#                <form id="form" method="get">#}
+            {#                    <input type="file" name="file"#}
+            {#                           class="text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"/>#}
+            {#                    <button type="submit"#}
+            {#                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">#}
+            {#                        Submit File#}
+            {#                    </button>#}
+            {#                </form>#}
+            {#            </div> #}
+
+            <!-- END OF the ORIGINAL, LINKED choose file dialog -->
 
             <!-- the comment box -->
             <div class="">
@@ -163,5 +204,6 @@
                 });
             };
         </script>
+    {# </div> #}
     </body>
 {% endblock %}
