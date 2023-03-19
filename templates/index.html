@@ -17,26 +17,25 @@
             </button>
         </div>
         <!-- the choose file dialog + comment box flex left side -->
-        <div class="flex flex-auto flex-col space-y-2 flex-1 border-red-700 border w-fit p-6 ml-6 bg-red-400 dark:bg-gray-800 rounded-lg transition-colors duration-300">
+        <div class="flex flex-auto flex-col space-y-2 border-red-700 border w-fit max-w-[480px] p-6 ml-6 bg-red-400 dark:bg-gray-800 rounded-lg transition-colors duration-300">
             <h2 class="text-2xl font-semibold text-gray-900 dark:text-white border-red-700 border text-center">File submission</h2>
             <!-- the choose file UPLOAD FORM -->
 <!-- upload boxes-->
-<div class="flex flex-row flex-auto justify-evenly border border-red-700 w-full h-32">
+<div class="flex flex-row flex-auto justify-end border border-orange-700 max-h-36 space-x-6">
 
-<div class="flex items-center justify-center w-fit">
-    <label for="dropzone-file" class="flex flex-col items-center justify-center w-32 h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-        <div class="flex flex-col items-center justify-center pt-5 pb-6">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+<div class="flex items-center justify-center w-3/5">
+    <label for="dropzone-file" class="flex flex-col items-center justify-center text-center h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+        <div class="flex flex-col items-center justify-center p-4 pt-5 pb-6">
+            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">Click or drag to <span class="font-semibold">upload raw counts</span></p>
         </div>
         <input id="dropzone-file" type="file" class="hidden" />
     </label>
 </div>
 
-<div class="flex items-center justify-center w-fit">
-    <label for="dropzone-file" class="flex flex-col items-center justify-center w-32 h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-        <div class="flex flex-col items-center justify-center pt-5 pb-6">
-            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+<div class="flex items-center justify-center w-3/5">
+    <label for="dropzone-file" class="flex flex-col items-center justify-center h-32 border-2 text-center border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+        <div class="flex flex-col items-center justify-center p-4 pt-5 pb-6">
+            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">Click or drag to <span class="font-semibold">upload plate diagram</span></p>
         </div>
         <input id="dropzone-file" type="file" class="hidden" />
     </label>
@@ -45,16 +44,20 @@
 </div>
             <!-- end upload boxes-->
 
-            <div class="flex flex-row justify-end w-fit border-red-700 border pt-2">
-                <form id="form" method="get">
-                    <input type="file" name="file"
-                           class="text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"/>
-                    <button type="submit"
-                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                        Submit File
-                    </button>
-                </form>
-            </div>
+            <!-- the ORIGINAL, LINKED choose file dialog -->
+{#            <div class="flex flex-row justify-end w-fit border-red-700 border pt-2">#}
+{#                <form id="form" method="get">#}
+{#                    <input type="file" name="file"#}
+{#                           class="text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"/>#}
+{#                    <button type="submit"#}
+{#                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">#}
+{#                        Submit File#}
+{#                    </button>#}
+{#                </form>#}
+{#            </div>#}
+
+              <!-- END OF the ORIGINAL, LINKED choose file dialog -->
+
             <!-- the comment box -->
             <div class="">
                 <div class="flex flex-col h-fit w-fit border-red-700 border">
@@ -79,7 +82,7 @@
                 display: none;
             }
         </style>
-        <div class="absolute top-12 right-0 bottom-8 max-h-screen border-red-700 border rounded-lg right-6 overflow-auto no-scrollbar w-fit max-w-lg transition-all duration-200">
+        <div class="absolute top-11 right-0 bottom-5 max-h-screen border-red-700 border rounded-lg right-6 overflow-auto no-scrollbar w-fit max-w-lg transition-all duration-200">
             <div class="transition-all duration-300">
                 <table id="data"
                        class="right-0 text-sm text-gray-500 dark:text-gray-400 animated fadeIn">
