@@ -18,7 +18,8 @@
         </div>
         <!-- the choose file dialog + comment box flex left side -->
         <div class="flex flex-auto flex-col space-y-2 border-red-700 border w-fit max-w-[480px] p-6 ml-6 bg-red-400 dark:bg-gray-800 rounded-lg transition-colors duration-300">
-            <h2 class="text-2xl font-semibold text-gray-900 dark:text-white border-red-700 border text-center">File submission</h2>
+            <h2 class="p-2 text-xl font-semibold text-gray-900 dark:text-white border-red-700 border text-center bg-blue-700 rounded-lg">
+                File submission</h2>
             <!-- the choose file UPLOAD FORM -->
 <!-- upload boxes-->
 <div class="flex flex-row flex-auto justify-end border border-orange-700 max-h-36 space-x-6">
@@ -60,16 +61,16 @@
 
             <!-- the comment box -->
             <div class="">
-                <div class="flex flex-col h-fit w-fit border-red-700 border">
+                <div class="flex flex-col h-fit border-red-700 border">
                     <div class="">
     <textarea id="message"
-              class="resize-none w-56 p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 transition-colors duration-300 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Leave a comment..."></textarea>
+              class="resize-none w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 transition-colors duration-300 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Add a comment..."></textarea>
                     </div>
                     <div class="">
                         <button type="submit"
-                                class="w-56 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                            Submit Comment
+                                class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                            Submit
                         </button>
                     </div>
                 </div>
