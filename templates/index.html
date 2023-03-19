@@ -16,74 +16,106 @@
                 </svg>
             </button>
         </div>
-    <!-- the choose file dialog -->
-    <div class="flex flex-auto flex-col justify-between flex-1 border-red-700 border w-fit pl-6">
+        <!-- the choose file dialog + comment box flex left side -->
+        <div class="flex flex-auto flex-col space-y-2 flex-1 border-red-700 border w-fit p-6 ml-6 bg-red-400 dark:bg-gray-800 rounded-lg transition-colors duration-300">
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-white border-red-700 border text-center">File submission</h2>
+            <!-- the choose file UPLOAD FORM -->
+<!-- upload boxes-->
+<div class="flex flex-row flex-auto justify-evenly border border-red-700 w-full h-32">
 
-        <div class="flex flex-row justify-end w-fit border-red-700 border pt-2">
-            <form id="form" method="get">
-                <input type="file" name="file"
-                       class="text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"/>
-                <button type="submit"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                    Submit File
-                </button>
-            </form>
+<div class="flex items-center justify-center w-fit">
+    <label for="dropzone-file" class="flex flex-col items-center justify-center w-32 h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
         </div>
-<!-- the comment box -->
-{#                <div class="">#}
-{#            <div class="flex flex-col h-fit w-fit border-red-700 border">#}
-{#                <div class="">#}
-{#    <textarea id="message" class="resize-none w-56 p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"#}
-{#              placeholder="Leave a comment..."></textarea>#}
-{#                </div>#}
-{#                <div class="">#}
-{#                    <button type="submit"#}
-{#                            class="w-56 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">#}
-{#                        Submit Comment#}
-{#                    </button>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
+        <input id="dropzone-file" type="file" class="hidden" />
+    </label>
+</div>
 
-    </div>
+<div class="flex items-center justify-center w-fit">
+    <label for="dropzone-file" class="flex flex-col items-center justify-center w-32 h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+        </div>
+        <input id="dropzone-file" type="file" class="hidden" />
+    </label>
+</div>
+
+</div>
+            <!-- end upload boxes-->
+
+            <div class="flex flex-row justify-end w-fit border-red-700 border pt-2">
+                <form id="form" method="get">
+                    <input type="file" name="file"
+                           class="text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"/>
+                    <button type="submit"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                        Submit File
+                    </button>
+                </form>
+            </div>
+            <!-- the comment box -->
+            <div class="">
+                <div class="flex flex-col h-fit w-fit border-red-700 border">
+                    <div class="">
+    <textarea id="message"
+              class="resize-none w-56 p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 transition-colors duration-300 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Leave a comment..."></textarea>
+                    </div>
+                    <div class="">
+                        <button type="submit"
+                                class="w-56 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                            Submit Comment
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
         <!-- table -->
         <style>
             .no-scrollbar::-webkit-scrollbar {
                 display: none;
             }
         </style>
-        <div class="absolute top-12 right-0 bottom-12 max-h-screen border-red-700 border rounded-lg right-6 overflow-auto no-scrollbar w-fit max-w-2xl ">
-            <div class="">
+        <div class="absolute top-12 right-0 bottom-8 max-h-screen border-red-700 border rounded-lg right-6 overflow-auto no-scrollbar w-fit max-w-lg transition-all duration-200">
+            <div class="transition-all duration-300">
                 <table id="data"
                        class="right-0 text-sm text-gray-500 dark:text-gray-400 animated fadeIn">
-                <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-            Uploads
-            <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Scroll to browse qPCR uploads and related info - click an upload for more details.</p>
-                    <thead class="rounded-lg">
+                    <caption
+                            class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+                        Uploads
+                        <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Scroll to browse qPCR
+                            uploads and related info - click an upload for more details.</p>
+                        <thead class="rounded-lg">
 
-                    <tr>
-                        <th class="sticky top-0 px-3 py-3 bg-blue-700 hover:bg-blue-800 text-white text-md break-after-auto">
-                            File name
-                        </th>
-                        <th class="sticky top-0 px-3 py-3 bg-blue-700 hover:bg-blue-800 text-white text-md break-after-auto">
-                            Date uploaded
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody class="h-96">
-                    {% for entry in uploads %}
-                        <tr class="dark:bg-gray-800 dark:border-gray-700 break-after-auto">
-                            <td class="px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ entry.name }}</td>
-                            <td class="px-3 py-2">{{ entry.time }}</td>
+                        <tr>
+                            <th class="w-56 break-all sticky top-0 px-3 py-3 bg-blue-700 hover:bg-blue-800 text-white text-md">
+                                File name
+                            </th>
+                            <th class="w-56 break-all sticky top-0 px-3 py-3 bg-blue-700 hover:bg-blue-800 text-white text-md">
+                                Date uploaded
+                            </th>
+
                         </tr>
-                    {% endfor %}
-                    </tbody>
+                        </thead>
+                        <tbody class="h-96">
+                        {% for entry in uploads %}
+                            <tr class="dark:bg-gray-800 dark:border-gray-700 break-after-auto">
+                                <td class="w-[200px] break-all px-3 py-2 font-medium text-gray-900 dark:text-white">
+                                    {{ entry.name }}</td>
+                                <td class="w-[200px] break-all px-3 py-2">
+                                    {{ entry.time }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
                 </table>
             </div>
         </div>
         <!-- end table -->
 
-{# Script for updated table on submit of file#}
+        {# Script for updated table on submit of file#}
         <script type="text/javascript">
             window.onload = function () {
                 const mainForm = document.getElementById("form");
