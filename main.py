@@ -9,6 +9,7 @@ from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
 import os
 import bcrypt
+import pandas as pd
 
 from flask_login import (
     UserMixin,
@@ -177,10 +178,7 @@ def upload_file():
     if request.method == 'POST':
         files = request.files.getlist('file')
 
-        if files[0].filename == '':
-            flash('No selected file')
-
-        else:
+        if files != '':
             for file in files:
                 file_name = secure_filename(file.filename)
                 time = str(datetime.datetime.now().replace(microsecond=0))
@@ -190,6 +188,8 @@ def upload_file():
                 db.session.commit()
                 print("File uploaded: " + file_name)
 
+                pd.read_excel(file, engine='openpyxl')
+
             uploads = FileUploads.query.all()
             uploads = sorted(uploads, key=lambda x: x.time, reverse=True)
             update_table = render_template('update_table.html', uploads=uploads)
@@ -197,6 +197,18 @@ def upload_file():
             return jsonify({'update_table': update_table})
 
     return render_template('index.html')
+
+@app.route('/validate_file', methods=['POST'])
+def validate_file():
+    """Checks if uploaded file are valid by dimensions
+
+    """
+    file = request.files.get('file')
+    df = pd.read_excel(file, engine='openpyxl')
+    if df.shape == (93, 13):
+        return jsonify({'dimensions_valid': True})
+    else:
+        return jsonify({'dimensions_valid': False})
 
 
 if __name__ == '__main__':

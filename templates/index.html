@@ -17,18 +17,22 @@
             </button>
         </div>
         <!-- the choose file dialog + comment box flex left side -->
-        <div class="flex flex-auto flex-col space-y-6 border-red-700 border w-fit max-w-[480px] p-6 ml-6 bg-red-400 dark:bg-gray-800 rounded-lg transition-colors duration-300">
-            <h2 class="p-2 text-xl font-semibold text-gray-900 dark:text-white border-red-700 border text-center bg-blue-700 rounded-lg">
+
+        <div class="flex flex-auto flex-col space-y-6 border-red-700 border w-fit max-w-[480px] p-6 ml-6 bg-white dark:bg-gray-800 rounded-lg transition-none duration-300">
+            <h2 class="p-2 text-xl font-semibold text-gray-900 text-white dark:text-white border-red-700 border text-center bg-blue-700 rounded-lg">
                 File submission</h2>
             <!-- the choose file UPLOAD FORM -->
             <!-- upload boxes-->
             <div class="flex flex-row flex-auto justify-end border border-orange-700 max-h-32 space-x-6">
 
-                <div class="flex items-center justify-center w-3/5">
+                <div class="flex items-center justify-center w-3/5"
+                >
                     <label for="dropzone-file"
-                           class="flex flex-col items-center justify-center text-center h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                        <div class="flex flex-col items-center justify-center p-4 pt-5 pb-6">
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Click or drag to <span
+                           class="transition-all flex flex-col items-center justify-center text-center h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                            id="raw_counts_upload">
+                        <div class="flex flex-col items-center justify-center p-4 pt-5 pb-6"
+                             method="get">
+                            <p class="text-sm text-gray-500 dark:text-gray-400"> Click or drag to <span
                                     class="font-semibold">upload raw counts</span></p>
                         </div>
                         <input id="dropzone-file" type="file" class="hidden"/>
@@ -53,33 +57,45 @@
             <div class="flex flex-row space-x-6 h-56 w-full border border-red-700 justify-between">
 
                 <div class="flex flex-col text-white border-red-700 border justify-evenly items-center w-3/5 p-4">
-<div class="flex items-center mb-4">
-    <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default checkbox</label>
-</div>
-<div class="flex items-center mb-4">
-    <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default checkbox</label>
-</div>
-<div class="flex items-center mb-4">
-    <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default checkbox</label>
-</div>
+                    <div class="flex items-center mb-4">
+                        <input id="default-checkbox" type="checkbox" value=""
+                               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
+                            checkbox</label>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <input id="default-checkbox" type="checkbox" value=""
+                               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
+                            checkbox</label>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <input id="default-checkbox" type="checkbox" value=""
+                               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
+                            checkbox</label>
+                    </div>
                 </div>
 
                 <div class="flex flex-col text-white border-red-700 border justify-evenly items-center  w-3/5 p-4">
-<div class="flex items-center mb-4">
-    <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default checkbox</label>
-</div>
-<div class="flex items-center mb-4">
-    <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default checkbox</label>
-</div>
-<div class="flex items-center mb-4">
-    <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default checkbox</label>
-</div>
+                    <div class="flex items-center mb-4">
+                        <input id="default-checkbox" type="checkbox" value=""
+                               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
+                            checkbox</label>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <input id="default-checkbox" type="checkbox" value=""
+                               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
+                            checkbox</label>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <input id="default-checkbox" type="checkbox" value=""
+                               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
+                            checkbox</label>
+                    </div>
                 </div>
 
             </div>
@@ -104,9 +120,9 @@
             <div class="">
                 <div class="flex flex-col h-fit border-red-700 border">
                     <div class="">
-    <textarea id="message"
-              class="resize-none w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 transition-colors duration-300 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Add a comment..."></textarea>
+                        <label for="message"></label><textarea id="message"
+                                                               class="resize-none w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 transition-colors duration-300 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                               placeholder="Add a comment..."></textarea>
                     </div>
                     <div class="">
                         <button type="submit"
@@ -204,6 +220,33 @@
                 });
             };
         </script>
-    {# </div> #}
+        {# </div>  I dont know why but this needs to not be closed so I dont have
+
+                a scroll bar on the page. Everything else works fine without this div#}
+<script>
+    const fileInput = document.getElementById("dropzone-file");
+    const fileDiv = document.getElementById("raw_counts_upload");
+    fileInput.addEventListener("change", function() {
+        const file = fileInput.files[0];
+        const formData = new FormData();
+        formData.append('file', file);
+
+        fetch('/validate_file', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.dimensions_valid) {
+                fileDiv.classList.add('bg-green-400');
+            } else {
+                fileDiv.classList.add('bg-red-400');
+            }
+        });
+    });
+</script>
+
+
+    </div>
     </body>
 {% endblock %}
