@@ -241,11 +241,11 @@
                         if (data.dimensions_valid) {
                             fileDiv.classList.add('bg-green-400');
                             fileTextColor.classList.add('text-white');
-                            fileTextColor.innerHTML = data.file_name + 'is valid and ready to be submitted';
+                            fileTextColor.innerHTML = data.file_name + ' is valid and ready to be submitted';
                         } else {
                             fileDiv.classList.add('bg-red-400');
                             fileTextColor.classList.add('text-white');
-                            fileTextColor.innerHTML = "File is invalid. Please check the file and try again.";
+                            fileTextColor.innerHTML = data.file_name + " is invalid. Excel file must be 96 x 16, but is " + data.file_length + " x " + data.file_width;
                         }
                     });
             });

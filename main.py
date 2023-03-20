@@ -197,7 +197,7 @@ def upload_file():
             return jsonify({'update_table': update_table})
 
     return render_template('index.html')
-
+# TODO add check for excel or csv file
 @app.route('/validate_file', methods=['POST'])
 def validate_file():
     """Checks if uploaded file are valid by dimensions
@@ -209,14 +209,14 @@ def validate_file():
     if df.shape == (9, 10):
         file_validation_response_data = {
             'dimensions_valid': True,
-            'file_name': file.filename
+            'file_name': os.path.splitext(file.filename)[0]
         }
     else:
         file_validation_response_data = {
             'dimensions_valid': False,
-            'file_name': os.path.splittext(file.filename)[0],
+            'file_name': os.path.splitext(file.filename)[0],
             'file_width': df.shape[1],
-            'file_height': df.shape[0]
+            'file_length': df.shape[0]
         }
     return jsonify(file_validation_response_data)
 
