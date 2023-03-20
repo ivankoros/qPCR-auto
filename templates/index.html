@@ -224,28 +224,35 @@
         </script>
 
         <script>
-            const fileTextColor = document.getElementById("testing222");
-            const fileInput = document.getElementById("raw_counts_dropzone");
-            const fileDiv = document.getElementById("raw_counts_div");
-            fileInput.addEventListener("change", function () {
-                const file = fileInput.files[0];
+            const rawCountsDimensions = "9x10";
+            const plateDiagramDimensions = "9x10";
+
+            const rawCountsFileTextDiv = document.getElementById("testing222");
+            const rawCountsFileUpload = document.getElementById("raw_counts_dropzone");
+            const rawCountsFileDiv = document.getElementById("raw_counts_div");
+            rawCountsFileUpload.addEventListener("change", function () {
+                const file = rawCountsFileUpload.files[0];
                 const formData = new FormData();
                 formData.append('file', file);
 
-                fetch('/validate_file', {
+                fetch('/validate_file/'+rawCountsDimensions, {
                     method: 'POST',
                     body: formData
                 })
                     .then(response => response.json())
                     .then(data => {
                         if (data.dimensions_valid) {
-                            fileDiv.classList.add('bg-green-400');
-                            fileTextColor.classList.add('text-white');
-                            fileTextColor.innerHTML = data.file_name + ' is valid and ready to be submitted';
+                            rawCountsFileDiv.classList.remove('bg-red-400')
+                            rawCountsFileDiv.classList.add('bg-green-400')
+                            rawCountsFileDiv.classList.add('dark:bg-green-500');
+                            rawCountsFileTextDiv.classList.add('text-white')
+                            rawCountsFileTextDiv.classList.add('dark:text-white');
+                            rawCountsFileTextDiv.innerHTML = data.file_name + ' is valid and ready to be submitted';
                         } else {
-                            fileDiv.classList.add('bg-red-400');
-                            fileTextColor.classList.add('text-white');
-                            fileTextColor.innerHTML = data.file_name + " is invalid. Excel file must be 96 x 16, but is " + data.file_length + " x " + data.file_width;
+                            rawCountsFileDiv.classList.remove('bg-green-400')
+                            rawCountsFileDiv.classList.add('bg-red-400');
+                            rawCountsFileTextDiv.classList.add('text-white');
+                            rawCountsFileTextDiv.innerHTML = data.file_name + " is invalid. Excel file must be 96 x 16, but is " + data.file_length + " x " + data.file_width;
                         }
                     });
             });

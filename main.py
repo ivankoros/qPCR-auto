@@ -198,23 +198,30 @@ def upload_file():
 
     return render_template('index.html')
 # TODO add check for excel or csv file
-@app.route('/validate_file', methods=['POST'])
-def validate_file():
+@app.route('/validate_file/<dimensions>', methods=['POST'])
+def validate_file(dimensions):
     """Checks if uploaded file are valid by dimensions
+
+    Depending on the dimensions of the file, the response data is different.
+    If the file is the raw qpcr data then it is checked to be 96x16, and if its
+    the plate diagram file then it is checked to be 9x10.
+
 
     """
     file = request.files.get('file')
     df = pd.read_excel(file, engine='openpyxl')
-    print(df.shape)
-    if df.shape == (9, 10):
+
+    expected_dimensions = tuple(map(int, dimensions.split('x')))
+
+    if df.shape == expected_dimensions:
         file_validation_response_data = {
             'dimensions_valid': True,
-            'file_name': os.path.splitext(file.filename)[0]
+            'file_name': os.path.splitext(file.filename)[0]  # Removing extension
         }
     else:
         file_validation_response_data = {
             'dimensions_valid': False,
-            'file_name': os.path.splitext(file.filename)[0],
+            'file_name': os.path.splitext(file.filename)[0],  # Removing extension
             'file_width': df.shape[1],
             'file_length': df.shape[0]
         }
