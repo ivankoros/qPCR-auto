@@ -25,28 +25,30 @@
             <!-- upload boxes-->
             <div class="flex flex-row flex-auto justify-end border border-orange-700 max-h-32 space-x-6">
 
-                <div class="flex items-center justify-center w-3/5"
-                >
-                    <label for="dropzone-file"
-                           class="transition-all flex flex-col items-center justify-center text-center h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-                            id="raw_counts_upload">
+                <div class="flex items-center justify-center w-3/5">
+                    <label for="raw_counts_dropzone"
+                           class="transition-all flex flex-col items-center justify-center text-center h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                           id="raw_counts_div">
                         <div class="flex flex-col items-center justify-center p-4 pt-5 pb-6"
                              method="get">
-                            <p class="text-sm text-gray-500 dark:text-gray-400"> Click or drag to <span
+                            <p class="text-sm text-gray-500 dark:text-gray-400"
+                               id="testing222"> Click or drag to <span
                                     class="font-semibold">upload raw counts</span></p>
                         </div>
-                        <input id="dropzone-file" type="file" class="hidden"/>
+                        <input id="raw_counts_dropzone" type="file" class="hidden"/>
                     </label>
                 </div>
 
                 <div class="flex items-center justify-center w-3/5">
-                    <label for="dropzone-file"
-                           class="flex flex-col items-center justify-center h-32 border text-center border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                    <label for="plate_diagram_dropzone"
+                           class="flex flex-col items-center justify-center h-32 border text-center border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                           id="plate_diagram_div">
                         <div class="flex flex-col items-center justify-center p-4 pt-5 pb-6">
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Click or drag to <span
+                            <p class="text-sm text-gray-500 dark:text-gray-400"
+                            >Click or drag to <span
                                     class="font-semibold">upload plate diagram</span></p>
                         </div>
-                        <input id="dropzone-file" type="file" class="hidden"/>
+                        <input id="plate_diagram_dropzone" type="file" class="hidden"/>
                     </label>
                 </div>
 
@@ -220,31 +222,34 @@
                 });
             };
         </script>
-        {# </div>  I dont know why but this needs to not be closed so I dont have
 
-                a scroll bar on the page. Everything else works fine without this div#}
-<script>
-    const fileInput = document.getElementById("dropzone-file");
-    const fileDiv = document.getElementById("raw_counts_upload");
-    fileInput.addEventListener("change", function() {
-        const file = fileInput.files[0];
-        const formData = new FormData();
-        formData.append('file', file);
+        <script>
+            const fileTextColor = document.getElementById("testing222");
+            const fileInput = document.getElementById("raw_counts_dropzone");
+            const fileDiv = document.getElementById("raw_counts_div");
+            fileInput.addEventListener("change", function () {
+                const file = fileInput.files[0];
+                const formData = new FormData();
+                formData.append('file', file);
 
-        fetch('/validate_file', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.dimensions_valid) {
-                fileDiv.classList.add('bg-green-400');
-            } else {
-                fileDiv.classList.add('bg-red-400');
-            }
-        });
-    });
-</script>
+                fetch('/validate_file', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.dimensions_valid) {
+                            fileDiv.classList.add('bg-green-400');
+                            fileTextColor.classList.add('text-white');
+                            fileTextColor.innerHTML = data.file_name + 'is valid and ready to be submitted';
+                        } else {
+                            fileDiv.classList.add('bg-red-400');
+                            fileTextColor.classList.add('text-white');
+                            fileTextColor.innerHTML = "File is invalid. Please check the file and try again.";
+                        }
+                    });
+            });
+        </script>
 
 
     </div>

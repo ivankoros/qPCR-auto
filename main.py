@@ -205,10 +205,20 @@ def validate_file():
     """
     file = request.files.get('file')
     df = pd.read_excel(file, engine='openpyxl')
-    if df.shape == (93, 13):
-        return jsonify({'dimensions_valid': True})
+    print(df.shape)
+    if df.shape == (9, 10):
+        file_validation_response_data = {
+            'dimensions_valid': True,
+            'file_name': file.filename
+        }
     else:
-        return jsonify({'dimensions_valid': False})
+        file_validation_response_data = {
+            'dimensions_valid': False,
+            'file_name': os.path.splittext(file.filename)[0],
+            'file_width': df.shape[1],
+            'file_height': df.shape[0]
+        }
+    return jsonify(file_validation_response_data)
 
 
 if __name__ == '__main__':
