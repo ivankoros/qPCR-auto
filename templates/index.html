@@ -32,7 +32,7 @@
                         <div class="flex flex-col items-center justify-center p-4 pt-5 pb-6"
                              method="get">
                             <p class="text-sm text-gray-500 dark:text-gray-400"
-                               id="testing222"> Click or drag to <span
+                               id="raw_counts_text"> Click or drag to <span
                                     class="font-semibold">upload raw counts</span></p>
                         </div>
                         <input id="raw_counts_dropzone" type="file" class="hidden"/>
@@ -45,6 +45,7 @@
                            id="plate_diagram_div">
                         <div class="flex flex-col items-center justify-center p-4 pt-5 pb-6">
                             <p class="text-sm text-gray-500 dark:text-gray-400"
+                                 id="plate_diagram_text"
                             >Click or drag to <span
                                     class="font-semibold">upload plate diagram</span></p>
                         </div>
@@ -142,7 +143,7 @@
                 display: none;
             }
         </style>
-        <div class="absolute top-11 right-0 bottom-5 max-h-screen border-red-700 border rounded-lg right-6 overflow-auto no-scrollbar w-fit max-w-lg transition-all duration-200">
+        <div class="hidden absolute top-11 right-0 bottom-5 max-h-screen border-red-700 border rounded-lg right-6 overflow-auto no-scrollbar w-fit max-w-lg transition-all duration-200">
             <div class="transition-all duration-300">
                 <table id="data"
                        class="right-0 text-sm text-gray-500 dark:text-gray-400 animated fadeIn">
@@ -224,12 +225,26 @@
         </script>
 
         <script>
-            const rawCountsDimensions = "9x10";
-            const plateDiagramDimensions = "9x10";
+            // Script for file upload validation
 
-            const rawCountsFileTextDiv = document.getElementById("testing222");
+
+            // Dimension requirements for each file
+            const rawCountsDimensions = "96x16";
+            const plateDiagramDimensions = "8x13";
+
+            // Set up upload, div, and text elements to modify
+                // Raw counts variables
+            const rawCountsFileTextDiv = document.getElementById("raw_counts_text");
             const rawCountsFileUpload = document.getElementById("raw_counts_dropzone");
             const rawCountsFileDiv = document.getElementById("raw_counts_div");
+
+                // Plate diagram variables
+            const plateDiagramFileTextDiv = document.getElementById("plate_diagram_text");
+            const plateDiagramFileUpload = document.getElementById("plate_diagram_dropzone");
+            const plateDiagramFileDiv = document.getElementById("plate_diagram_div");
+
+
+
             rawCountsFileUpload.addEventListener("change", function () {
                 const file = rawCountsFileUpload.files[0];
                 const formData = new FormData();
@@ -242,22 +257,121 @@
                     .then(response => response.json())
                     .then(data => {
                         if (data.dimensions_valid) {
+
+                            // Changing background to green
+                                //Removing red and original background
                             rawCountsFileDiv.classList.remove('bg-red-400')
+                            rawCountsFileDiv.classList.remove('dark:bg-red-600');
+                                // Adding green background
                             rawCountsFileDiv.classList.add('bg-green-400')
                             rawCountsFileDiv.classList.add('dark:bg-green-500');
+
+                            // Changing hover to darker green
+                                // Removing original and red hover
+                            rawCountsFileDiv.classList.remove("hover:bg-gray-100")
+                            rawCountsFileDiv.classList.remove("dark:hover:bg-gray-800")
+                            rawCountsFileDiv.classList.remove("hover:bg-red-400")
+                            rawCountsFileDiv.classList.remove("dark:hover:bg-red-600")
+                                // Adding green hover
+                            rawCountsFileDiv.classList.add("hover:bg-green-500")
+                            rawCountsFileDiv.classList.add("dark:hover:bg-green-600")
+
+                            // Changing text to say that (file name) is valid and ready for submission
+                            rawCountsFileTextDiv.innerHTML = data.file_name + ' is valid and ready to be submitted';
+
+                            // Changing text to white
+                            rawCountsFileTextDiv.classList.remove('text-gray-500')
                             rawCountsFileTextDiv.classList.add('text-white')
                             rawCountsFileTextDiv.classList.add('dark:text-white');
-                            rawCountsFileTextDiv.innerHTML = data.file_name + ' is valid and ready to be submitted';
+
                         } else {
+
+                            // Changing background to red
                             rawCountsFileDiv.classList.remove('bg-green-400')
                             rawCountsFileDiv.classList.add('bg-red-400');
+                            rawCountsFileDiv.classList.add('dark:bg-red-600');
+
+                            // Changing text to white
+                            rawCountsFileTextDiv.classList.remove('text-gray-500');
                             rawCountsFileTextDiv.classList.add('text-white');
+                            rawCountsFileTextDiv.classList.add('dark:text-white');
+
+                            // Changing hover to darker red
+                            rawCountsFileDiv.classList.remove("hover:bg-gray-100")
+                            rawCountsFileDiv.classList.remove("dark:hover:bg-gray-800")
+                            rawCountsFileDiv.classList.add("hover:bg-red-500")
+                            rawCountsFileDiv.classList.add("dark:hover:bg-red-600")
+
+
                             rawCountsFileTextDiv.innerHTML = data.file_name + " is invalid. Excel file must be 96 x 16, but is " + data.file_length + " x " + data.file_width;
                         }
                     });
-            });
+            })
+
+            plateDiagramFileUpload.addEventListener("change", function () {
+                const file = plateDiagramFileUpload.files[0];
+                const formData = new FormData();
+                formData.append('file', file);
+
+                fetch('/validate_file/'+plateDiagramDimensions, {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.dimensions_valid) {
+
+                            // Changing background to green
+                                //Removing red and original background
+                            plateDiagramFileDiv.classList.remove('bg-red-400')
+                            plateDiagramFileDiv.classList.remove('dark:bg-red-600');
+                                // Adding green background
+                            plateDiagramFileDiv.classList.add('bg-green-400')
+                            plateDiagramFileDiv.classList.add('dark:bg-green-500');
+
+                            // Changing hover to darker green
+                                // Removing original and red hover
+                            plateDiagramFileDiv.classList.remove("hover:bg-gray-100")
+                            plateDiagramFileDiv.classList.remove("dark:hover:bg-gray-800")
+                            plateDiagramFileDiv.classList.remove("hover:bg-red-400")
+                            plateDiagramFileDiv.classList.remove("dark:hover:bg-red-600")
+                                // Adding green hover
+                            plateDiagramFileDiv.classList.add("hover:bg-green-500")
+                            plateDiagramFileDiv.classList.add("dark:hover:bg-green-600")
+
+                            // Changing text to say that (file name) is valid and ready for submission
+                            plateDiagramFileTextDiv.innerHTML = data.file_name + ' is valid and ready to be submitted';
+
+                            // Changing text to white
+                            plateDiagramFileTextDiv.classList.remove('text-gray-500')
+                            plateDiagramFileTextDiv.classList.add('text-white')
+                            plateDiagramFileTextDiv.classList.add('dark:text-white');
+                        } else {
+
+                            // Changing background to red
+                            plateDiagramFileDiv.classList.remove('bg-green-400')
+                            plateDiagramFileDiv.classList.add('bg-red-400');
+                            plateDiagramFileDiv.classList.add('dark:bg-red-600');
+
+                            // Changing text to white
+                            plateDiagramFileTextDiv.classList.remove('text-gray-500');
+                            plateDiagramFileTextDiv.classList.add('text-white');
+                            plateDiagramFileTextDiv.classList.add('dark:text-white');
+
+                            // Changing hover to darker red
+                            plateDiagramFileDiv.classList.remove("hover:bg-gray-100")
+                            plateDiagramFileDiv.classList.remove("dark:hover:bg-gray-800")
+                            plateDiagramFileDiv.classList.add("hover:bg-red-500")
+                            plateDiagramFileDiv.classList.add("dark:hover:bg-red-600")
+
+                            plateDiagramFileTextDiv.innerHTML = data.file_name + " is invalid. Excel file must be 96 x 16, but is " + data.file_length + " x " + data.file_width;
+                        }
+                    });
+            })
         </script>
 
+    <div class="hidden bg-red"
+    id="testing"></div>
 
     </div>
     </body>
