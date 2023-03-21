@@ -30,6 +30,7 @@ module.exports = {
     fontFamily: {
         'body': [
             'Inter',
+            'Inter var',
             'ui-sans-serif',
             'system-ui',
             '-apple-system',

@@ -16,23 +16,29 @@
                 </svg>
             </button>
         </div>
-        <!-- the choose file dialog + comment box flex left side -->
 
-        <div class="flex flex-auto flex-col space-y-6 border-red-700 border w-fit max-w-[480px] p-6 ml-6 bg-white dark:bg-gray-800 rounded-lg duration-300">
+    <div class="flex flex row">
+    <div class="w-1/4 h-screen bg-green-400 hidden lg:block"></div>
+        <!-- the choose file dialog + comment box flex left side -->
+        <div class="flex flex-auto flex-col space-y-6 border-red-700 border w-fit w-3/4 p-6 bg-white dark:bg-gray-800 duration-300">
             <h2 class="p-2 text-xl font-semibold text-gray-900 text-white dark:text-white border-red-700 border text-center bg-blue-700 rounded-lg">
                 File submission</h2>
             <!-- the choose file UPLOAD FORM -->
             <!-- upload boxes-->
-            <div class="flex flex-row flex-auto justify-end border border-orange-700 max-h-32 space-x-6">
 
-                <div class="flex items-center justify-center w-3/5">
+
+{# add greenguy.svg #}
+{#<img src="{{ url_for('static', filename='images/greenguy.svg') }}" alt="greenguy" class="absolute -ml-16 overflow-clip h-3/5 max-w-lg right-0 bottom-0 border border-red-700">#}
+            <div class="flex flex-row justify-evenly border border-orange-700 h-32 space-x-6">
+
+                <div class="flex items-center justify-center rounded-lg border border-red-700 text-ellipsis overflow-hidden">
                     <label for="raw_counts_dropzone"
-                           class="transition-all flex flex-col items-center justify-center text-center h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                           class="transition-all flex flex-col items-center justify-center text-center border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
                            id="raw_counts_div"
                             ondrop="dropHandler(this.file);">
-                        <div class="flex flex-col items-center justify-center p-4 pt-5 pb-6"
+                        <div class="flex flex-col items-center justify-center p-4 pt-5 pb-6 h-32 w-96"
                              method="get">
-                            <p class="text-sm text-gray-500 dark:text-gray-400 w-40 text-ellipsis overflow-hidden"
+                            <p class="text-gray-500 dark:text-gray-400 text-ellipsis overflow-hidden w-96"
                                id="raw_counts_text"> Click or drag to <span
                                     class="font-semibold">upload raw counts</span></p>
                         </div>
@@ -40,12 +46,12 @@
                     </label>
                 </div>
 
-                <div class="flex items-center justify-center w-3/5">
+                <div class="flex items-center justify-center rounded-lg border border-red-700 max-w-[50%] text-ellipsis overflow-hidden">
                     <label for="plate_diagram_dropzone"
-                           class="transition-all flex flex-col items-center justify-center text-center h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                           class="w- transition-all flex flex-col items-center justify-center text-center border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
                            id="plate_diagram_div">
-                        <div class="flex flex-col items-center justify-center p-4 pt-5 pb-6">
-                            <p class="text-sm text-gray-500 dark:text-gray-400 w-40 text-ellipsis overflow-hidden"
+                        <div class="flex flex-col items-center justify-center p-4 pt-5 pb-6 h-32 w-96">
+                            <p class="text-gray-500 dark:text-gray-400 text-ellipsis overflow-hidden w-96"
                                  id="plate_diagram_text"
                             >Click or drag to <span
                                     class="font-semibold">upload plate diagram</span></p>
@@ -58,7 +64,7 @@
             <!-- end upload boxes-->
 
             <!-- start checkboxes -->
-            <div class="flex flex-row space-x-6 h-72 w-full border border-red-700 items-start ring-0 focus:ring-0">
+            <div class="hidden flex flex-row space-x-6 h-72 w-full border border-red-700 items-start ring-0 focus:ring-0">
 
                 <div class="flex flex-col text-white border-red-700 border justify-evenly items-center w-3/5 p-4 gap-y-4">
                     <div class="flex bg-blue-700 rounded-lg flex items-center mb-4 w-full p-2">
@@ -157,6 +163,7 @@
             </div>
 
         </div>
+    </div>
         <!-- table -->
         <style>
             .no-scrollbar::-webkit-scrollbar {
@@ -394,5 +401,7 @@
     id="testing"></div>
 
     </div>
+
+    <script src="..node_modules/flowbite/dist/flowbite.min.js"></script>
     </body>
 {% endblock %}
