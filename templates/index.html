@@ -17,186 +17,194 @@
             </button>
         </div>
 
-    <div class="flex flex row">
-    <div class="w-1/4 h-screen bg-green-400 hidden lg:block"></div>
-        <!-- the choose file dialog + comment box flex left side -->
-        <div class="flex flex-auto flex-col space-y-6 w-fit w-3/4 p-6 duration-300">
-            <h2 class="p-2 text-4xl h-24 font-semibold text-gray-900 text-black dark:text-white text-center rounded-lg">
-                File submission</h2>
-            <!-- the choose file UPLOAD FORM -->
-            <!-- upload boxes-->
+        <div class="flex flex row">
+            <div class="w-1/4 h-screen bg-green-400 hidden lg:block"></div>
+            <!-- the choose file dialog + comment box flex left side -->
+            <div class="flex flex-auto flex-col space-y-6 w-fit w-3/4 p-6 duration-300">
+                <h2 class="p-2 text-4xl h-24 font-semibold text-gray-900 text-black dark:text-white text-center rounded-lg">
+                    File submission</h2>
+                <!-- the choose file UPLOAD FORM -->
+                <!-- upload boxes-->
 
-{#            <div class="relative w-full overflow-x-hidden">
+                {#            <div class="relative w-full overflow-x-hidden">
     <img src="{{ url_for('static', filename='images/greenguy.svg') }}" alt="greenguy" class="absolute -ml-16 h-3/5 max-w-lg right-0 bottom-0 border border-red-700 translate-x-1/4">
 </div>#}
 
 
+                <div class="flex flex-row justify-center h-32 space-x-6">
 
-            <div class="flex flex-row justify-center h-32 space-x-6">
-
-                <div class="flex-auto items-center justify-center rounded-lg text-ellipsis overflow-hidden max-w-[50%] lg:max-w-md">
-                    <label for="raw_counts_dropzone"
-                           class="transition-all flex flex-col items-center justify-center text-center rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-                           id="raw_counts_div">
-                        <div class="flex flex-col items-center justify-center p-4 pt-5 pb-6 h-32">
-                            <p class="text-gray-500 dark:text-gray-400 text-ellipsis overflow-hidden w-72 lg:w-96"
-                               id="raw_counts_text"> Click or drag to <span
-                                    class="font-semibold">upload raw counts</span></p>
-                        </div>
-                        <input id="raw_counts_dropzone" type="file" class="hidden"/>
-                    </label>
-                </div>
-
-                <div class="flex-auto items-center justify-center rounded-lg text-ellipsis overflow-hidden max-w-[50%] lg:max-w-md">
-                    <label for="plate_diagram_dropzone"
-                           class="transition-all flex flex-col items-center justify-center text-center rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-                           id="plate_diagram_div">
-                        <div class="flex flex-col items-center justify-center p-4 pt-5 pb-6 h-32">
-                            <p class="text-gray-500 dark:text-gray-400 text-ellipsis overflow-hidden w-72 lg:w-96"
-                                 id="plate_diagram_text"
-                            >Click or drag to <span
-                                    class="font-semibold">upload plate diagram</span></p>
-                        </div>
-                        <input id="plate_diagram_dropzone" type="file" class="hidden"/>
-                    </label>
-                </div>
-
-            </div>
-
-                <script>
-        function handleFileSelect(event, dropzone) {
-            event.stopPropagation();
-            event.preventDefault();
-
-            const files = event.dataTransfer.files;
-
-            if (files.length > 0) {
-                dropzone.files = files;
-                dropzone.dispatchEvent(new Event('change'));
-            }
-        }
-
-        function handleDragOver(event) {
-            event.stopPropagation();
-            event.preventDefault();
-            event.dataTransfer.dropEffect = 'move';
-        }
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const rawCountsDropzone = document.getElementById('raw_counts_dropzone');
-            const plateDiagramDropzone = document.getElementById('plate_diagram_dropzone');
-
-            rawCountsDropzone.parentNode.addEventListener('dragover', handleDragOver, false);
-            rawCountsDropzone.parentNode.addEventListener('drop', (event) => handleFileSelect(event, rawCountsDropzone), false);
-
-            plateDiagramDropzone.parentNode.addEventListener('dragover', handleDragOver, false);
-            plateDiagramDropzone.parentNode.addEventListener('drop', (event) => handleFileSelect(event, plateDiagramDropzone), false);
-        });
-    </script>
-
-            <!-- end upload boxes-->
- <img href="class flex row space-x-6 w-full ">
-            <!-- start checkboxes -->
-            <div class="hidden flex flex-row space-x-6 h-72 w-full items-start ring-0 focus:ring-0">
-
-                <div class="flex flex-col text-white justify-evenly items-center w-3/5 p-4 gap-y-4">
-                    <div class="flex bg-blue-700 rounded-lg flex items-center mb-4 w-full p-2">
-                        <input id="experiment_id" type="checkbox" value=""
-                               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded  dark: dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="experiment_id" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                            Experimenet ID
+                    <div class="flex-auto items-center justify-center rounded-lg text-ellipsis overflow-hidden max-w-[50%] lg:max-w-md">
+                        <label for="raw_counts_dropzone"
+                               class="transition-all flex flex-col items-center justify-center text-center rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                               id="raw_counts_div">
+                            <div class="flex flex-col items-center justify-center p-4 pt-5 pb-6 h-32">
+                                <p class="text-gray-500 dark:text-gray-400 text-ellipsis overflow-hidden w-72 lg:w-96"
+                                   id="raw_counts_text"> Click or drag to <span
+                                        class="font-semibold">upload raw counts</span></p>
+                            </div>
+                            <input id="raw_counts_dropzone" type="file" class="hidden"/>
                         </label>
                     </div>
-                    <div class="flex items-center mb-4">
-                        <input id="default-checkbox" type="checkbox" value=""
-                               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded  dark: dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
-                            checkbox</label>
+
+                    <div class="flex-auto items-center justify-center rounded-lg text-ellipsis overflow-hidden max-w-[50%] lg:max-w-md">
+                        <label for="plate_diagram_dropzone"
+                               class="transition-all flex flex-col items-center justify-center text-center rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                               id="plate_diagram_div">
+                            <div class="flex flex-col items-center justify-center p-4 pt-5 pb-6 h-32">
+                                <p class="text-gray-500 dark:text-gray-400 text-ellipsis overflow-hidden w-72 lg:w-96"
+                                   id="plate_diagram_text"
+                                >Click or drag to <span
+                                        class="font-semibold">upload plate diagram</span></p>
+                            </div>
+                            <input id="plate_diagram_dropzone" type="file" class="hidden"/>
+                        </label>
                     </div>
-                    <div class="flex items-center mb-4">
-                        <input id="default-checkbox" type="checkbox" value=""
-                               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded  dark: dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
-                            checkbox</label>
-                    </div>
-                                        <div class="flex items-center mb-4">
-                        <input id="default-checkbox" type="checkbox" value=""
-                               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded  dark: dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
-                            checkbox</label>
-                    </div>
-                                        <div class="flex items-center mb-4">
-                        <input id="default-checkbox" type="checkbox" value=""
-                               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded  dark: dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
-                            checkbox</label>
-                    </div>
+
                 </div>
 
-                <div class="flex flex-col text-white justify-evenly items-center gap-y-4 w-3/5 p-4">
-                    <div class="flex items-center mb-4">
-                        <input id="default-checkbox" type="checkbox" value=""
-                               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded  dark: dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
-                            checkbox</label>
+                <script>
+                    function handleFileSelect(event, dropzone) {
+                        event.stopPropagation();
+                        event.preventDefault();
+
+                        const files = event.dataTransfer.files;
+
+                        if (files.length > 0) {
+                            dropzone.files = files;
+                            dropzone.dispatchEvent(new Event('change'));
+                        }
+                    }
+
+                    function handleDragOver(event) {
+                        event.stopPropagation();
+                        event.preventDefault();
+                        event.dataTransfer.dropEffect = 'move';
+                    }
+
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const rawCountsDropzone = document.getElementById('raw_counts_dropzone');
+                        const plateDiagramDropzone = document.getElementById('plate_diagram_dropzone');
+
+                        rawCountsDropzone.parentNode.addEventListener('dragover', handleDragOver, false);
+                        rawCountsDropzone.parentNode.addEventListener('drop', (event) => handleFileSelect(event, rawCountsDropzone), false);
+
+                        plateDiagramDropzone.parentNode.addEventListener('dragover', handleDragOver, false);
+                        plateDiagramDropzone.parentNode.addEventListener('drop', (event) => handleFileSelect(event, plateDiagramDropzone), false);
+                    });
+                </script>
+
+                <!-- end upload boxes-->
+                <img href="class flex row space-x-6 w-full ">
+                <!-- start checkboxes -->
+                <div class="hidden flex flex-row space-x-6 h-72 w-full items-start ring-0 focus:ring-0">
+
+                    <div class="flex flex-col text-white justify-evenly items-center w-3/5 p-4 gap-y-4">
+                        <div class="flex bg-blue-700 rounded-lg flex items-center mb-4 w-full p-2">
+                            <input id="experiment_id" type="checkbox" value=""
+                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded  dark: dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="experiment_id"
+                                   class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                Experimenet ID
+                            </label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="default-checkbox" type="checkbox" value=""
+                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded  dark: dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="default-checkbox"
+                                   class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
+                                checkbox</label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="default-checkbox" type="checkbox" value=""
+                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded  dark: dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="default-checkbox"
+                                   class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
+                                checkbox</label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="default-checkbox" type="checkbox" value=""
+                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded  dark: dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="default-checkbox"
+                                   class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
+                                checkbox</label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="default-checkbox" type="checkbox" value=""
+                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded  dark: dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="default-checkbox"
+                                   class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
+                                checkbox</label>
+                        </div>
                     </div>
-                    <div class="focus:ring-0 bg-blue-700 rounded-lg flex items-center mb-4 w-full p-2">
-                        <input id="default-checkbox" type="checkbox" value=""
-                               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-700 dark:border-gray-600">
-                        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
-                            checkbox</label>
+
+                    <div class="flex flex-col text-white justify-evenly items-center gap-y-4 w-3/5 p-4">
+                        <div class="flex items-center mb-4">
+                            <input id="default-checkbox" type="checkbox" value=""
+                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded  dark: dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="default-checkbox"
+                                   class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
+                                checkbox</label>
+                        </div>
+                        <div class="focus:ring-0 bg-blue-700 rounded-lg flex items-center mb-4 w-full p-2">
+                            <input id="default-checkbox" type="checkbox" value=""
+                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-700 dark:border-gray-600">
+                            <label for="default-checkbox"
+                                   class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
+                                checkbox</label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="default-checkbox" type="checkbox" value=""
+                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded  dark: dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="default-checkbox"
+                                   class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
+                                checkbox</label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="default-checkbox" type="checkbox" value=""
+                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded  dark: dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="default-checkbox"
+                                   class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
+                                checkbox</label>
+                        </div>
                     </div>
-                    <div class="flex items-center mb-4">
-                        <input id="default-checkbox" type="checkbox" value=""
-                               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded  dark: dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
-                            checkbox</label>
-                    </div>
-                                        <div class="flex items-center mb-4">
-                        <input id="default-checkbox" type="checkbox" value=""
-                               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded  dark: dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
-                            checkbox</label>
+
+                </div>
+
+                <!-- end checkboxes -->
+
+                <!-- the ORIGINAL, LINKED choose file dialog -->
+                {#            <div class="flex flex-row justify-end w-fit border-red-700 border pt-2">#}
+                {#                <form id="form" method="get">#}
+                {#                    <input type="file" name="file"#}
+                {#                           class="text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"/>#}
+                {#                    <button type="submit"#}
+                {#                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:800">#}
+                {#                        Submit File#}
+                {#                    </button>#}
+                {#                </form>#}
+                {#            </div> #}
+
+                <!-- END OF the ORIGINAL, LINKED choose file dialog -->
+
+                <!-- the comment box -->
+                <div class="hidden">
+                    <div class="flex-auto flex-col h-fit lg:max-w-md border border-red-700">
+                        <div class="">
+                            <label for="message"></label><textarea id="message"
+                                                                   class="resize-none w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300  transition-colors duration-300 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark: dark:focus:border-blue-500"
+                                                                   placeholder="Add a comment..."></textarea>
+                        </div>
+                        <div class="">
+                            <button type="submit"
+                                    class="pointer-events-none w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 300 font-medium rounded-lg text-sm px-3 py-2.5 dark:bg-gray-600 dark:hover:bg-blue-700 focus:outline-none dark:800">
+                                Submit
+                            </button>
+                        </div>
                     </div>
                 </div>
 
             </div>
-
-            <!-- end checkboxes -->
-
-            <!-- the ORIGINAL, LINKED choose file dialog -->
-            {#            <div class="flex flex-row justify-end w-fit border-red-700 border pt-2">#}
-            {#                <form id="form" method="get">#}
-            {#                    <input type="file" name="file"#}
-            {#                           class="text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"/>#}
-            {#                    <button type="submit"#}
-            {#                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:800">#}
-            {#                        Submit File#}
-            {#                    </button>#}
-            {#                </form>#}
-            {#            </div> #}
-
-            <!-- END OF the ORIGINAL, LINKED choose file dialog -->
-
-            <!-- the comment box -->
-            <div class="hidden">
-                <div class="flex-auto flex-col h-fit lg:max-w-md border border-red-700">
-                    <div class="">
-                        <label for="message"></label><textarea id="message"
-                                                               class="resize-none w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300  transition-colors duration-300 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark: dark:focus:border-blue-500"
-                                                               placeholder="Add a comment..."></textarea>
-                    </div>
-                    <div class="">
-                        <button type="submit"
-                                class="pointer-events-none w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 300 font-medium rounded-lg text-sm px-3 py-2.5 dark:bg-gray-600 dark:hover:bg-blue-700 focus:outline-none dark:800">
-                            Submit
-                        </button>
-                    </div>
-                </div>
-            </div>
-
         </div>
-    </div>
         <!-- table -->
         <style>
             .no-scrollbar::-webkit-scrollbar {
@@ -293,16 +301,15 @@
             const plateDiagramDimensions = "8x13";
 
             // Set up upload, div, and text elements to modify
-                // Raw counts variables
+            // Raw counts variables
             const rawCountsFileTextDiv = document.getElementById("raw_counts_text");
             const rawCountsFileUpload = document.getElementById("raw_counts_dropzone");
             const rawCountsFileDiv = document.getElementById("raw_counts_div");
 
-                // Plate diagram variables
+            // Plate diagram variables
             const plateDiagramFileTextDiv = document.getElementById("plate_diagram_text");
             const plateDiagramFileUpload = document.getElementById("plate_diagram_dropzone");
             const plateDiagramFileDiv = document.getElementById("plate_diagram_div");
-
 
 
             rawCountsFileUpload.addEventListener("change", function () {
@@ -310,7 +317,7 @@
                 const formData = new FormData();
                 formData.append('file', file);
 
-                fetch('/validate_file/'+rawCountsDimensions, {
+                fetch('/validate_file/' + rawCountsDimensions, {
                     method: 'POST',
                     body: formData
                 })
@@ -319,20 +326,20 @@
                         if (data.dimensions_valid) {
 
                             // Changing background to green
-                                //Removing red and original background
+                            //Removing red and original background
                             rawCountsFileDiv.classList.remove('bg-red-400')
                             rawCountsFileDiv.classList.remove('dark:bg-red-600');
-                                // Adding green background
+                            // Adding green background
                             rawCountsFileDiv.classList.add('bg-green-400')
                             rawCountsFileDiv.classList.add('dark:bg-green-500');
 
                             // Changing hover to darker green
-                                // Removing original and red hover
+                            // Removing original and red hover
                             rawCountsFileDiv.classList.remove("hover:bg-gray-100")
                             rawCountsFileDiv.classList.remove("dark:hover:bg-gray-800")
                             rawCountsFileDiv.classList.remove("hover:bg-red-400")
                             rawCountsFileDiv.classList.remove("dark:hover:bg-red-600")
-                                // Adding green hover
+                            // Adding green hover
                             rawCountsFileDiv.classList.add("hover:bg-green-500")
                             rawCountsFileDiv.classList.add("dark:hover:bg-green-600")
 
@@ -373,7 +380,7 @@
                 const formData = new FormData();
                 formData.append('file', file);
 
-                fetch('/validate_file/'+plateDiagramDimensions, {
+                fetch('/validate_file/' + plateDiagramDimensions, {
                     method: 'POST',
                     body: formData
                 })
@@ -382,20 +389,20 @@
                         if (data.dimensions_valid) {
 
                             // Changing background to green
-                                //Removing red and original background
+                            //Removing red and original background
                             plateDiagramFileDiv.classList.remove('bg-red-400')
                             plateDiagramFileDiv.classList.remove('dark:bg-red-600');
-                                // Adding green background
+                            // Adding green background
                             plateDiagramFileDiv.classList.add('bg-green-400')
                             plateDiagramFileDiv.classList.add('dark:bg-green-500');
 
                             // Changing hover to darker green
-                                // Removing original and red hover
+                            // Removing original and red hover
                             plateDiagramFileDiv.classList.remove("hover:bg-gray-100")
                             plateDiagramFileDiv.classList.remove("dark:hover:bg-gray-800")
                             plateDiagramFileDiv.classList.remove("hover:bg-red-400")
                             plateDiagramFileDiv.classList.remove("dark:hover:bg-red-600")
-                                // Adding green hover
+                            // Adding green hover
                             plateDiagramFileDiv.classList.add("hover:bg-green-500")
                             plateDiagramFileDiv.classList.add("dark:hover:bg-green-600")
 
@@ -424,7 +431,7 @@
                             plateDiagramFileDiv.classList.add("hover:bg-red-500")
                             plateDiagramFileDiv.classList.add("dark:hover:bg-red-600")
 
-                            plateDiagramFileTextDiv.innerHTML = data.file_name + " is invalid. Excel file must be 96 x 16, but is " + data.file_length + " x " + data.file_width;
+                            plateDiagramFileTextDiv.innerHTML = data.file_name + " is invalid. Excel file must be 8 x 13, but is " + data.file_length + " x " + data.file_width;
                         }
                     });
             })
