@@ -18,7 +18,7 @@
         </div>
         <!-- the choose file dialog + comment box flex left side -->
 
-        <div class="flex flex-auto flex-col space-y-6 border-red-700 border w-fit max-w-[480px] p-6 ml-6 bg-white dark:bg-gray-800 rounded-lg transition-none duration-300">
+        <div class="flex flex-auto flex-col space-y-6 border-red-700 border w-fit max-w-[480px] p-6 ml-6 bg-white dark:bg-gray-800 rounded-lg duration-300">
             <h2 class="p-2 text-xl font-semibold text-gray-900 text-white dark:text-white border-red-700 border text-center bg-blue-700 rounded-lg">
                 File submission</h2>
             <!-- the choose file UPLOAD FORM -->
@@ -28,10 +28,11 @@
                 <div class="flex items-center justify-center w-3/5">
                     <label for="raw_counts_dropzone"
                            class="transition-all flex flex-col items-center justify-center text-center h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-                           id="raw_counts_div">
+                           id="raw_counts_div"
+                            ondrop="dropHandler(this.file);">
                         <div class="flex flex-col items-center justify-center p-4 pt-5 pb-6"
                              method="get">
-                            <p class="text-sm text-gray-500 dark:text-gray-400"
+                            <p class="text-sm text-gray-500 dark:text-gray-400 w-40 text-ellipsis overflow-hidden"
                                id="raw_counts_text"> Click or drag to <span
                                     class="font-semibold">upload raw counts</span></p>
                         </div>
@@ -41,10 +42,10 @@
 
                 <div class="flex items-center justify-center w-3/5">
                     <label for="plate_diagram_dropzone"
-                           class="flex flex-col items-center justify-center h-32 border text-center border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                           class="transition-all flex flex-col items-center justify-center text-center h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
                            id="plate_diagram_div">
                         <div class="flex flex-col items-center justify-center p-4 pt-5 pb-6">
-                            <p class="text-sm text-gray-500 dark:text-gray-400"
+                            <p class="text-sm text-gray-500 dark:text-gray-400 w-40 text-ellipsis overflow-hidden"
                                  id="plate_diagram_text"
                             >Click or drag to <span
                                     class="font-semibold">upload plate diagram</span></p>
@@ -57,9 +58,9 @@
             <!-- end upload boxes-->
 
             <!-- start checkboxes -->
-            <div class="flex flex-row space-x-6 h-56 w-full border border-red-700 justify-between">
+            <div class="flex flex-row space-x-6 h-72 w-full border border-red-700 items-start">
 
-                <div class="flex flex-col text-white border-red-700 border justify-evenly items-center w-3/5 p-4">
+                <div class="flex flex-col text-white border-red-700 border justify-evenly items-center w-3/5 p-4 gap-y-4">
                     <div class="flex items-center mb-4">
                         <input id="default-checkbox" type="checkbox" value=""
                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
@@ -73,6 +74,18 @@
                             checkbox</label>
                     </div>
                     <div class="flex items-center mb-4">
+                        <input id="default-checkbox" type="checkbox" value=""
+                               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
+                            checkbox</label>
+                    </div>
+                                        <div class="flex items-center mb-4">
+                        <input id="default-checkbox" type="checkbox" value=""
+                               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
+                            checkbox</label>
+                    </div>
+                                        <div class="flex items-center mb-4">
                         <input id="default-checkbox" type="checkbox" value=""
                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                         <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
@@ -80,7 +93,7 @@
                     </div>
                 </div>
 
-                <div class="flex flex-col text-white border-red-700 border justify-evenly items-center  w-3/5 p-4">
+                <div class="flex flex-col text-white border-red-700 border justify-evenly items-center gap-y-4 w-3/5 p-4">
                     <div class="flex items-center mb-4">
                         <input id="default-checkbox" type="checkbox" value=""
                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
@@ -94,6 +107,12 @@
                             checkbox</label>
                     </div>
                     <div class="flex items-center mb-4">
+                        <input id="default-checkbox" type="checkbox" value=""
+                               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
+                            checkbox</label>
+                    </div>
+                                        <div class="flex items-center mb-4">
                         <input id="default-checkbox" type="checkbox" value=""
                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                         <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
@@ -129,7 +148,7 @@
                     </div>
                     <div class="">
                         <button type="submit"
-                                class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                class="pointer-events-none w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 dark:bg-gray-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                             Submit
                         </button>
                     </div>

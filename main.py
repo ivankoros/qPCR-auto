@@ -203,7 +203,7 @@ def validate_file(dimensions):
     """Checks if uploaded file are valid by dimensions
 
     Depending on the dimensions of the file, the response data is different.
-    If the file is the raw qpcr data then it is checked to be 96x16, and if its
+    If the file is the raw qpcr data then it is checked to be 96x16, and if it's
     the plate diagram file then it is checked to be 9x10.
 
 
