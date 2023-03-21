@@ -21,22 +21,24 @@
     <div class="w-1/4 h-screen bg-green-400 hidden lg:block"></div>
         <!-- the choose file dialog + comment box flex left side -->
         <div class="flex flex-auto flex-col space-y-6 w-fit w-3/4 p-6 duration-300">
-            <h2 class="p-2 text-4xl font-semibold text-gray-900 text-black dark:text-white text-center rounded-lg">
+            <h2 class="p-2 text-4xl h-24 font-semibold text-gray-900 text-black dark:text-white text-center rounded-lg">
                 File submission</h2>
             <!-- the choose file UPLOAD FORM -->
             <!-- upload boxes-->
 
+{#            <div class="relative w-full overflow-x-hidden">
+    <img src="{{ url_for('static', filename='images/greenguy.svg') }}" alt="greenguy" class="absolute -ml-16 h-3/5 max-w-lg right-0 bottom-0 border border-red-700 translate-x-1/4">
+</div>#}
 
-{# add greenguy.svg #}
-{#<img src="{{ url_for('static', filename='images/greenguy.svg') }}" alt="greenguy" class="absolute -ml-16 overflow-clip h-3/5 max-w-lg right-0 bottom-0 border border-red-700">#}
-            <div class="flex flex-row justify-evenly h-32 space-x-6">
 
-                <div class="flex items-center justify-center rounded-lg text-ellipsis overflow-hidden">
+
+            <div class="flex flex-row justify-center h-32 space-x-6">
+
+                <div class="flex-auto items-center justify-center rounded-lg text-ellipsis overflow-hidden max-w-[50%] lg:max-w-md">
                     <label for="raw_counts_dropzone"
-                           class="transition-all flex flex-col items-center justify-center text-center border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-                           id="raw_counts_div"
-                            ondrop="dropHandler(this.file);">
-                        <div class="flex flex-col items-center justify-center p-4 pt-5 pb-6 h-32 w-72 lg:w-96">
+                           class="transition-all flex flex-col items-center justify-center text-center rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                           id="raw_counts_div">
+                        <div class="flex flex-col items-center justify-center p-4 pt-5 pb-6 h-32">
                             <p class="text-gray-500 dark:text-gray-400 text-ellipsis overflow-hidden w-72 lg:w-96"
                                id="raw_counts_text"> Click or drag to <span
                                     class="font-semibold">upload raw counts</span></p>
@@ -45,11 +47,11 @@
                     </label>
                 </div>
 
-                <div class="flex items-center justify-center rounded-lg max-w-[50%] text-ellipsis overflow-hidden">
+                <div class="flex-auto items-center justify-center rounded-lg text-ellipsis overflow-hidden max-w-[50%] lg:max-w-md">
                     <label for="plate_diagram_dropzone"
-                           class="w- transition-all flex flex-col items-center justify-center text-center border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                           class="transition-all flex flex-col items-center justify-center text-center rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
                            id="plate_diagram_div">
-                        <div class="flex flex-col items-center justify-center p-4 pt-5 pb-6 h-32 w-72 lg:w-96">
+                        <div class="flex flex-col items-center justify-center p-4 pt-5 pb-6 h-32">
                             <p class="text-gray-500 dark:text-gray-400 text-ellipsis overflow-hidden w-72 lg:w-96"
                                  id="plate_diagram_text"
                             >Click or drag to <span
@@ -60,8 +62,40 @@
                 </div>
 
             </div>
-            <!-- end upload boxes-->
 
+                <script>
+        function handleFileSelect(event, dropzone) {
+            event.stopPropagation();
+            event.preventDefault();
+
+            const files = event.dataTransfer.files;
+
+            if (files.length > 0) {
+                dropzone.files = files;
+                dropzone.dispatchEvent(new Event('change'));
+            }
+        }
+
+        function handleDragOver(event) {
+            event.stopPropagation();
+            event.preventDefault();
+            event.dataTransfer.dropEffect = 'move';
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const rawCountsDropzone = document.getElementById('raw_counts_dropzone');
+            const plateDiagramDropzone = document.getElementById('plate_diagram_dropzone');
+
+            rawCountsDropzone.parentNode.addEventListener('dragover', handleDragOver, false);
+            rawCountsDropzone.parentNode.addEventListener('drop', (event) => handleFileSelect(event, rawCountsDropzone), false);
+
+            plateDiagramDropzone.parentNode.addEventListener('dragover', handleDragOver, false);
+            plateDiagramDropzone.parentNode.addEventListener('drop', (event) => handleFileSelect(event, plateDiagramDropzone), false);
+        });
+    </script>
+
+            <!-- end upload boxes-->
+ <img href="class flex row space-x-6 w-full ">
             <!-- start checkboxes -->
             <div class="hidden flex flex-row space-x-6 h-72 w-full items-start ring-0 focus:ring-0">
 
@@ -145,8 +179,8 @@
             <!-- END OF the ORIGINAL, LINKED choose file dialog -->
 
             <!-- the comment box -->
-            <div class="">
-                <div class="flex flex-col h-fit">
+            <div class="hidden">
+                <div class="flex-auto flex-col h-fit lg:max-w-md border border-red-700">
                     <div class="">
                         <label for="message"></label><textarea id="message"
                                                                class="resize-none w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300  transition-colors duration-300 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark: dark:focus:border-blue-500"
