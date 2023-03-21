@@ -8,6 +8,7 @@ from wtforms.validators import InputRequired, Length, Regexp
 from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
 import os
+import html
 import bcrypt
 import pandas as pd
 
@@ -216,12 +217,12 @@ def validate_file(dimensions):
     if df.shape == expected_dimensions:
         file_validation_response_data = {
             'dimensions_valid': True,
-            'file_name': os.path.splitext(file.filename)[0]  # Removing extension
+            'file_name': os.path.splitext(html.escape(file.filename))[0]  # Removing extension & escaping html
         }
     else:
         file_validation_response_data = {
             'dimensions_valid': False,
-            'file_name': os.path.splitext(file.filename)[0],  # Removing extension
+            'file_name': os.path.splitext(html.escape(file.filename))[0],  # Removing extension & escaping html
             'file_width': df.shape[1],
             'file_length': df.shape[0]
         }
