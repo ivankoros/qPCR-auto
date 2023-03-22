@@ -182,14 +182,14 @@
         </div>
 
             {#    Green guy SVG #}
-            <div class="overflow-hidden absolute object-contain h-4/5 w-1/3 ax-w-lg right-0 bottom-0 transform -scale-x-100 z-0">
-                <img src="{{ url_for('static', filename='images/Asset 2.svg') }}" alt="greenguy" class="overflow-hidden -ml-24 absolute">
+            <div class="overflow-hidden absolute object-contain h-4/5 w-1/3 max-w-[480px] min-w-[300px] ax-w-lg right-0 bottom-0 transform -scale-x-100 z-0">
+                <img src="{{ url_for('static', filename='images/greenguy.svg') }}" alt="greenguy" class="overflow-hidden -ml-24 absolute">
             </div>
 
         <!-- table -->
         <style>
             .no-scrollbar::-webkit-scrollbar {
-                display: none;
+                display: none;v
             }
         </style>
         <div class="hidden absolute top-11 right-0 bottom-5 max-h-screen border-red-700 border rounded-lg right-6 overflow-auto no-scrollbar w-fit max-w-lg transition-all duration-200">
