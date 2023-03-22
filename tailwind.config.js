@@ -20,8 +20,10 @@ module.exports = {
                     "800": "#1e40af",
                     "900": "#1e3a8a"
                 }
-            }
-        },
+            },
+        scale: {
+            "-100": "-1",
+        }},
     },
     plugins: [
         require("flowbite/plugin"),

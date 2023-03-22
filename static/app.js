@@ -75,4 +75,3 @@ function updateTable() {
         }
 
 // File validation function
-
