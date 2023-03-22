@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-    <body class="bg-gray-50 dark:bg-gray-900">
-    <div class="flex flex-col bg-gray-50 dark:bg-gray-900">
+    <body class="bg-gray-50 dark:bg-gray-900" style="height: 100vh;">
+
+    <div class="flex flex-col bg-gray-50 dark:bg-gray-900 h-screen">
+
         <div id="theme-toggle-container">
             <button id="theme-toggle" type="button"
                     class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-2.5">
@@ -17,8 +19,13 @@
             </button>
         </div>
 
-        <div class="flex flex row">
-            <div class="w-1/4 h-screen bg-green-400 hidden lg:block"></div>
+        {#    parent #}
+        <div class="flex flex-row h-screen">
+
+            {#            left side  #}
+            <div class="flex flex-1 w-1/4 bg-green-400 hidden lg:block border"></div>
+
+
             <!-- the choose file dialog + comment box flex left side -->
             <div class="flex flex-auto flex-col space-y-6 w-fit w-3/4 p-6 duration-300">
                 <h2 class="p-2 text-4xl h-24 font-semibold text-gray-900 text-black dark:text-white text-center rounded-lg">
@@ -26,19 +33,14 @@
                 <!-- the choose file UPLOAD FORM -->
                 <!-- upload boxes-->
 
-                {#            <div class="relative w-full overflow-x-hidden">
-    <img src="{{ url_for('static', filename='images/greenguy.svg') }}" alt="greenguy" class="absolute -ml-16 h-3/5 max-w-lg right-0 bottom-0 border border-red-700 translate-x-1/4">
-</div>#}
-
-
-                <div class="flex flex-row justify-center h-32 space-x-6">
+                <div class="flex flex-row justify-center h-32 space-x-12 ml-32 mr-32">
 
                     <div class="flex-auto items-center justify-center rounded-lg text-ellipsis overflow-hidden max-w-[50%] lg:max-w-md">
                         <label for="raw_counts_dropzone"
                                class="transition-all flex flex-col items-center justify-center text-center rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:hover:border-gray-500 dark:hover:bg-gray-600"
                                id="raw_counts_div">
                             <div class="flex flex-col items-center justify-center p-4 pt-5 pb-6 h-32">
-                                <p class="text-gray-500 dark:text-gray-400 text-ellipsis overflow-hidden w-72 lg:w-96"
+                                <p class="text-gray-500 dark:text-gray-400 text-ellipsis overflow-hidden w-72"
                                    id="raw_counts_text"> Click or drag to <span
                                         class="font-semibold">upload raw counts</span></p>
                             </div>
@@ -51,7 +53,7 @@
                                class="transition-all flex flex-col items-center justify-center text-center rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
                                id="plate_diagram_div">
                             <div class="flex flex-col items-center justify-center p-4 pt-5 pb-6 h-32">
-                                <p class="text-gray-500 dark:text-gray-400 text-ellipsis overflow-hidden w-72 lg:w-96"
+                                <p class="text-base text-gray-500 dark:text-gray-400 text-ellipsis overflow-hidden w-72"
                                    id="plate_diagram_text"
                                 >Click or drag to <span
                                         class="font-semibold">upload plate diagram</span></p>
@@ -178,6 +180,9 @@
 
             </div>
         </div>
+        {#    <div class="overflow-hidden absolute object-contain h-2/5 w-1/6 ax-w-lg right-0 bottom-0 border transform -scale-x-100">#}
+        {#        <img src="{{ url_for('static', filename='images/Asset 2.svg') }}" alt="greenguy" class="overflow-hidden -ml-24 absolute">#}
+        {#    </div>#}
         <!-- table -->
         <style>
             .no-scrollbar::-webkit-scrollbar {
