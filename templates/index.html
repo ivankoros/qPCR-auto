@@ -24,7 +24,8 @@
             <div class="flex w-0 lg:w-1/4 xl:w-1/4 z-10">
                 <div class="flex flex-1 hidden xl:block lg:block min-w-[325px] 2xl:block overflow-auto no-scrollbar transition-all duration-200">
                     <div class="transition-all duration-300">
-                        <table id="data" class="w-full text-sm text-gray-500 dark:text-gray-400 animated fadeIn">
+                        <table id="uploads_table"
+                               class="w-full text-sm text-gray-500 dark:text-gray-400 animated fadeIn">
                             <caption
                                     class="p-5 pt-6 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
                                 Uploads
@@ -41,7 +42,7 @@
                                 </th>
                             </tr>
                             </thead>
-                            <tbody class="">
+                            <tbody class="" id="uploads-table-body">
                             {% for entry in uploads %}
                                 <tr class="dark:bg-gray-800 dark:border-gray-700 break-after-auto">
                                     <td class="w-3/5 break-all pl-2 pr-2 py-1.5 font-normal text-gray-900 dark:text-white">
@@ -104,16 +105,16 @@
 
                 </div>
 
-            <!-- the ORIGINAL, LINKED choose file dialog -->
-<div class="w-fit justify-start items-start align-start">
-    <form id="form">
-        <button type="submit"
-                id="submit_button"
-                class="text-white bg-blue-700 hover:bg-blue-800 300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:800">
-            Submit Files
-        </button>
-    </form>
-</div>
+                <!-- the ORIGINAL, LINKED choose file dialog -->
+                <div class="w-fit justify-start items-start align-start">
+                    <form id="form">
+                        <button type="submit"
+                                id="submit_button"
+                                class="text-white bg-blue-700 hover:bg-blue-800 300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:800">
+                            Submit Files
+                        </button>
+                    </form>
+                </div>
 
 
                 <!-- END OF the ORIGINAL, LINKED choose file dialog -->
@@ -304,7 +305,7 @@
                     });
             })
             // If submit button is clicked and both files are valid, then submit the form
-    const SubmitButton = document.getElementById("submit_button");
+ const SubmitButton = document.getElementById("submit_button");
 
 SubmitButton.addEventListener("click", function (event) {
     event.preventDefault();
@@ -324,16 +325,36 @@ SubmitButton.addEventListener("click", function (event) {
             method: 'POST',
             body: formData
         })
-        .then(response => response.json())
-        .then(data => {
-            console.log("Files processed:", data);
-        });
+            .then(response => response.json())
+            .then(data => {
+                console.log("Files processed:", data);
 
-    } else {
-        console.log("Both files are not valid, not submitting form")
-    }
-});
+                // Create a new row and insert it into the table
+                const newRow = document.createElement('tr');
 
+
+                // Style the new row
+                newRow.classList.add('dark:bg-gray-800', 'dark:border-gray-700', 'break-after-auto');
+
+
+                // Add the raw counts file name and time to the new row
+                const rawCountsCell = document.createElement('td');
+                rawCountsCell.classList.add('w-3/5', 'break-all', 'pl-2', 'pr-2', 'py-1.5', 'font-normal', 'text-gray-900', 'dark:text-white');
+                rawCountsCell.textContent = rawCountsFile.name;
+                newRow.appendChild(rawCountsCell);
+
+                const timeCell = document.createElement('td');
+                timeCell.classList.add('text-center', 'break-all', 'pl-2', 'pr-2', 'min-w-[170px]', 'max-w-[180px]');
+                timeCell.textContent = new Date().toLocaleString();
+                newRow.appendChild(timeCell);
+
+                // Insert the new row at the top of the table
+                const uploadsTableBody = document.getElementById('uploads-table-body');
+                uploadsTableBody.insertBefore(newRow, uploadsTableBody.firstChild);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            })}});
 
         </script>
 

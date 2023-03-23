@@ -122,7 +122,7 @@ def login():
     Once the user is validated and redirected, the file table is queried and rendered.
 
     """
-    form = LoginForm()  # Create an instance of the LoginForm class
+    form = LoginForm()
 
     if form.validate_on_submit():
         username = form.username.data
@@ -193,11 +193,11 @@ def upload_file():
                 db.session.commit()
                 print("File uploaded: " + file_name)
 
-            uploads = FileUploads.query.all()
-            uploads = sorted(uploads, key=lambda x: x.time, reverse=True)
-            update_table = render_template('update_table.html', uploads=uploads)
+            # uploads = FileUploads.query.all()
+            # uploads = sorted(uploads, key=lambda x: x.time, reverse=True)
+            # update_table = render_template('update_table.html', uploads=uploads)
 
-            return jsonify({'update_table': update_table})
+            return jsonify({'status': 'success'})
 
     return render_template('index.html')
 
