@@ -172,14 +172,18 @@ def register():
 def upload_file():
     """File upload process route
 
-    When a file is uploaded, the file name and current time is added to the database.
-    The database is then queried and the table is updated with the new entry with javascript.
+    If the submit button is pressed and raw counts dropzone is valid and diagram dropzone is valid,
+    take the two files and add them to the database with the file name and current time.
+
+    Then update the table with the name of the raw counts file and date and time uploaded.
 
     """
     if request.method == 'POST':
-        files = request.files.getlist('file')
+        raw_counts_file = request.files['raw_counts']
+        plate_diagram_file = request.files['plate_diagram']
 
-        if files != '':
+        if raw_counts_file and plate_diagram_file:
+            files = [raw_counts_file, plate_diagram_file]
             for file in files:
                 file_name = secure_filename(file.filename)
                 time = str(datetime.datetime.now().replace(microsecond=0))
@@ -189,8 +193,6 @@ def upload_file():
                 db.session.commit()
                 print("File uploaded: " + file_name)
 
-                pd.read_excel(file, engine='openpyxl')
-
             uploads = FileUploads.query.all()
             uploads = sorted(uploads, key=lambda x: x.time, reverse=True)
             update_table = render_template('update_table.html', uploads=uploads)
@@ -198,6 +200,8 @@ def upload_file():
             return jsonify({'update_table': update_table})
 
     return render_template('index.html')
+
+
 # TODO add check for excel or csv file
 @app.route('/validate_file/<dimensions>', methods=['POST'])
 def validate_file(dimensions):

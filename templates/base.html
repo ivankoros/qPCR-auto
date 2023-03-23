@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <title>Home</title>
     <script src="{{ url_for('static', filename='app.js') }}"></script>
     <link href="../static/css/dist/output.css" rel="stylesheet"/>
     <meta charset="UTF-8">
@@ -22,8 +23,8 @@
 {% block scripts %}{% endblock %}
 
 <script type="text/javascript">
-    var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-    var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    let themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    let themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
 
     // Change the icons inside the button based on previous settings
     if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -32,7 +33,7 @@
         themeToggleDarkIcon.classList.remove('hidden');
     }
 
-    var themeToggleBtn = document.getElementById('theme-toggle');
+    let themeToggleBtn = document.getElementById('theme-toggle');
 
     themeToggleBtn.addEventListener('click', function () {
 
@@ -63,5 +64,4 @@
     });
 </script>
 
-</body>
 </html>

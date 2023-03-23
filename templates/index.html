@@ -18,44 +18,39 @@
     </div>
 
     <div class="flex flex-col bg-gray-50 dark:bg-gray-900 h-screen">
-
         {#    parent #}
         <div class="flex flex-1 flex-row h-screen">
-
             {#            left side  #}
             <div class="flex w-0 lg:w-1/4 xl:w-1/4 z-10">
                 <div class="flex flex-1 hidden xl:block lg:block min-w-[325px] 2xl:block overflow-auto no-scrollbar transition-all duration-200">
                     <div class="transition-all duration-300">
-                        <table id="data"
-                               class="w-full text-sm text-gray-500 dark:text-gray-400 animated fadeIn">
+                        <table id="data" class="w-full text-sm text-gray-500 dark:text-gray-400 animated fadeIn">
                             <caption
                                     class="p-5 pt-6 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
                                 Uploads
                                 <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Scroll to browse
-                                    qPCR
-                                    uploads and related info - click an upload for more details.</p>
-                                <thead class="">
-
-                                <tr>
-                                    <th class="break-all transition-all duration-200 sticky top-0 py-3 bg-blue-500 dark:bg-blue-700 hover:bg-blue-600 dark:hover:bg-blue-800 text-white text-md">
-                                        File name
-                                    </th>
-                                    <th class="break-all transition-all duration-200 sticky top-0 bg-blue-500 dark:bg-blue-700 dark:hover:bg-blue-800 hover:bg-blue-600 text-white text-md">
-                                        Date uploaded
-                                    </th>
-
+                                    qPCR uploads and related info - click an upload for more details.</p>
+                            </caption>
+                            <thead>
+                            <tr>
+                                <th class="break-all transition-all duration-200 sticky top-0 py-3 bg-blue-500 dark:bg-blue-700 hover:bg-blue-600 dark:hover:bg-blue-800 text-white text-md">
+                                    File name
+                                </th>
+                                <th class="break-all transition-all duration-200 sticky top-0 bg-blue-500 dark:bg-blue-700 dark:hover:bg-blue-800 hover:bg-blue-600 text-white text-md">
+                                    Date uploaded
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody class="">
+                            {% for entry in uploads %}
+                                <tr class="dark:bg-gray-800 dark:border-gray-700 break-after-auto">
+                                    <td class="w-3/5 break-all pl-2 pr-2 py-1.5 font-normal text-gray-900 dark:text-white">
+                                        {{ entry.name }}</td>
+                                    <td class="text-center break-all pl-2 pr-2 min-w-[170px] max-w-[180px]">
+                                        {{ entry.time }}</td>
                                 </tr>
-                                </thead>
-                                <tbody class="">
-                                {% for entry in uploads %}
-                                    <tr class="dark:bg-gray-800 dark:border-gray-700 break-after-auto">
-                                        <td class="w-3/5 break-all pl-2 pr-2 py-1.5 font-normal text-gray-900 dark:text-white">
-                                            {{ entry.name }}</td>
-                                        <td class="text-center break-all pl-2 pr-2 min-w-[170px] max-w-[180px]">
-                                            {{ entry.time }}</td>
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
+                            {% endfor %}
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -65,17 +60,15 @@
             <div class="flex flex-auto flex-col space-y-6 duration-300 items-center">
 
                 <img src="{{ url_for('static', filename='images/orangeguy.svg') }}" alt="orangeguy"
-                 class="overflow-hidden absolute rotate-[135deg] scale-150 origin-center mr-[1100px] -mt-12 min-w-[300px] max-w-[300px]">
+                     class="overflow-hidden absolute rotate-[135deg] scale-150 origin-center mr-[1100px] -mt-12 min-w-[300px] max-w-[300px]">
 
                 <div class="flex-auto flex flex-col pt-6 max-h-24 items-center text-center">
 
 
-
-                    <h2 class="pt-2 pb-2 text-4xl font-sans top-0 items-center ont-semibold text-gray-900 text-black dark:text-white text-center">
+                    <h2 class="font-['Lato'] t-2 pb-2 text-4xl top-0 items-center ont-semibold text-gray-900 text-black dark:text-white text-center">
                         Preprocessing</h2>
                     <!-- the choose file UPLOAD FORM -->
                     <!-- upload boxes-->
-
 
 
                 </div>
@@ -111,70 +104,53 @@
 
                 </div>
 
-                <script>
+            <!-- the ORIGINAL, LINKED choose file dialog -->
+<div class="w-fit justify-start items-start align-start">
+    <form id="form">
+        <button type="submit"
+                id="submit_button"
+                class="text-white bg-blue-700 hover:bg-blue-800 300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:800">
+            Submit Files
+        </button>
+    </form>
+</div>
 
-                </script>
-
-                <!-- end upload boxes-->
-
-                <!-- end checkboxes -->
-
-                <!-- the ORIGINAL, LINKED choose file dialog -->
-                {#            <div class="flex flex-row justify-end w-fit border-red-700 border pt-2">#}
-                {#                <form id="form" method="get">#}
-                {#                    <input type="file" name="file"#}
-                {#                           class="text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"/>#}
-                {#                    <button type="submit"#}
-                {#                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:800">#}
-                {#                        Submit File#}
-                {#                    </button>#}
-                {#                </form>#}
-                {#            </div> #}
 
                 <!-- END OF the ORIGINAL, LINKED choose file dialog -->
 
                 <!-- the comment box -->
-                <div class="hidden">
-                    <div class="flex-auto flex-col h-fit lg:max-w-md border border-red-700">
-                        <div class="">
-                            <label for="message"></label><textarea id="message"
-                                                                   class="resize-none w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300  transition-colors duration-300 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark: dark:focus:border-blue-500"
-                                                                   placeholder="Add a comment..."></textarea>
-                        </div>
-                        <div class="">
-                            <button type="submit"
-                                    class="pointer-events-none w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 300 font-medium rounded-lg text-sm px-3 py-2.5 dark:bg-gray-600 dark:hover:bg-blue-700 focus:outline-none dark:800">
-                                Submit
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
+                {#                <div class="hidden">#}
+                {#                    <div class="flex-auto flex-col h-fit lg:max-w-md border border-red-700">#}
+                {#                        <div class="">#}
+                {#                            <label for="message"></label><textarea id="message"#}
+                {#                                                                   class="resize-none w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300  transition-colors duration-300 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark: dark:focus:border-blue-500"#}
+                {#                                                                   placeholder="Add a comment..."></textarea>#}
+                {#                        </div>#}
+                {#                        <div class="">#}
+                {#                            <button type="submit"#}
+                {#                                    class="pointer-events-none w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 300 font-medium rounded-lg text-sm px-3 py-2.5 dark:bg-gray-600 dark:hover:bg-blue-700 focus:outline-none dark:800">#}
+                {#                                Submit#}
+                {#                            </button>#}
+                {#                        </div>#}
+                {#                    </div>#}
+                {#                </div>#}
+                {##}
+                {#            </div>#}
             </div>
         </div>
 
         {#    Green guy SVG #}
 
-            <div class="overflow-hidden absolute object-contain h-4/5 w-1/3 max-w-[480px] min-w-[300px] right-0 bottom-0 transform -scale-x-100 z-0">
+        <div class="overflow-hidden absolute object-contain h-4/5 w-1/3 max-w-[480px] min-w-[300px] right-0 bottom-0 transform -scale-x-100 z-0">
             <img src="{{ url_for('static', filename='images/greenguy.svg') }}" alt="greenguy"
                  class="overflow-hidden -ml-28 absolute">
         </div>
 
-
-
-        1
-        <!-- table -->
         <style>
             .no-scrollbar::-webkit-scrollbar {
                 display: none;
             }
         </style>
-
-        <!-- end table -->
-
-        {# Script for updated table on submit of file#}
-
-        </script>
 
         <script>
             // Script for file upload validation
@@ -200,6 +176,9 @@
                 const file = rawCountsFileUpload.files[0];
                 const formData = new FormData();
                 formData.append('file', file);
+                formData.append('upload_type', 'raw_counts');
+
+                console.log("Validating raw counts file dimensions...")
 
                 fetch('/validate_file/' + rawCountsDimensions, {
                     method: 'POST',
@@ -207,7 +186,10 @@
                 })
                     .then(response => response.json())
                     .then(data => {
+                        console.log(data)
                         if (data.dimensions_valid) {
+
+                            console.log("Dimensions for raw counts file are valid")
 
                             // Changing background to green
                             //Removing red and original background
@@ -263,6 +245,7 @@
                 const file = plateDiagramFileUpload.files[0];
                 const formData = new FormData();
                 formData.append('file', file);
+                formData.append('upload_type', 'plate_diagram');
 
                 fetch('/validate_file/' + plateDiagramDimensions, {
                     method: 'POST',
@@ -270,6 +253,7 @@
                 })
                     .then(response => response.json())
                     .then(data => {
+
                         if (data.dimensions_valid) {
 
                             // Changing background to green
@@ -319,9 +303,40 @@
                         }
                     });
             })
+            // If submit button is clicked and both files are valid, then submit the form
+    const SubmitButton = document.getElementById("submit_button");
+
+SubmitButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    if (rawCountsFileDiv.classList.contains('bg-green-400') && plateDiagramFileDiv.classList.contains('bg-green-400')) {
+        console.log("Both files are valid, submitting form");
+
+        const rawCountsFile = rawCountsFileUpload.files[0];
+        const plateDiagramFile = plateDiagramFileUpload.files[0];
+        const formData = new FormData();
+        formData.append('raw_counts', rawCountsFile);
+        formData.append('plate_diagram', plateDiagramFile);
+
+        console.log("Uploading " + plateDiagramFile.name);
+        console.log("Uploading " + rawCountsFile.name);
+
+        fetch('/process', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Files processed:", data);
+        });
+
+    } else {
+        console.log("Both files are not valid, not submitting form")
+    }
+});
+
+
         </script>
 
     </div>
-
     </body>
 {% endblock %}
