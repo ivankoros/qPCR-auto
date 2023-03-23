@@ -11,5 +11,5 @@ Raw qPCR data is mass-analyzed to provide statistical (pandas, polars, pyjanitor
 * Sleek and modern design & styling with Tailwind CSS (3.0) and Flowbite
 * Seamless cloud integration with Google Cloud
 
-## 3/18 state:
+## Current state (3/23):
 ![Animation](Animation.gif)
