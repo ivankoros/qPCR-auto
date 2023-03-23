@@ -10,7 +10,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login Page</title>
 </head>
-
+        <style>
+            .no-scrollbar::-webkit-scrollbar {
+                display: none;
+            }
+        </style>
+<div class="no-scrollbar overflow-hidden h-screen">
 <div id="theme-toggle-container" class="bg-gray-50 dark:bg-gray-900">
     <button id="theme-toggle" type="button"
             class="bg-gray-50 dark:bg-gray-900 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 dark:border-gray-900">
@@ -66,6 +71,7 @@
     </div>
 
 </section>
+</div>
 
 
 <script>
