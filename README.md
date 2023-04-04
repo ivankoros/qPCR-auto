@@ -5,12 +5,13 @@ A Python/Javascript web app designed to streamline longitudinal, lab-specific ex
 ## Features
 
 - Scalable and efficient server API using Flask (Python 3.9)
-- Responsive user experience with Vanilla JS & Chart.js (ES6)
+- Responsive user experience with Vanilla JS (ES6)
 - Sleek and modern design & styling with Tailwind CSS (3.0) and Flowbite
+- Custom SVG illustrations with Adobe Illustrator
 - Seamless cloud integration with Google Cloud
 
 ## Purpose and used libraries
-- Mass analysis of raw qPCR data for statistical and visual insights
+- Rapid analysis of raw qPCR data for statistical and visual insights
 - Utilizes powerful libraries like Pandas, Polars, Pyjanitor, NumPy, Chart.js, and Seaborn
 - Records experimental history to aid scientific decision-making
 - Functional alerts for maintaining experimental quality
