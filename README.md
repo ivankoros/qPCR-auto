@@ -4,7 +4,7 @@ A Python/Javascript web app designed to streamline longitudinal, lab-specific ex
 
 ## Features
 
-- Scalable and efficient server API using Flask (Python 3.8)
+- Scalable and efficient server API using Flask (Python 3.9)
 - Responsive user experience with Vanilla JS & Chart.js (ES6)
 - Sleek and modern design & styling with Tailwind CSS (3.0) and Flowbite
 - Seamless cloud integration with Google Cloud
@@ -23,7 +23,7 @@ A Python/Javascript web app designed to streamline longitudinal, lab-specific ex
 
 ### Prerequisites
 
-- Python 3.8
+- Python 3.9
 - Node.js
 
 ### Installation
