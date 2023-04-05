@@ -84,7 +84,21 @@ class FlaskAppTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'success', response.data)
 
+    def test_validate_file_valid(self):
+        with open('tests/testfiles/raw_counts.xlsx', 'rb') as file:
+            response = self.app.post('/validate_file/96x16',
+                                     data=dict(file=file),
+                                     content_type='multipart/form-data')
 
+        self.assertIn(b'true', response.data)
+
+    def test_validate_file_invalid(self):
+        with open('tests/testfiles/invalid_dimensions.xlsx' 'rb') as file:
+            response = self.app.post('/validate_file/96x16',
+                                     data=dict(file=file),
+                                     content_type='multipart/form-data')
+
+        self.assertIn(b'false', response.data)
 
 if __name__ == '__main__':
     unittest.main()
