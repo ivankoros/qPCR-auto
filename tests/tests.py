@@ -32,6 +32,13 @@ class FlaskAppTests(unittest.TestCase):
         db.session.remove()
         db.drop_all()
 
+    def test_login_successful(self):
+        response = self.app.post('/login',
+                                 data=dict(username='testuser', password='testpassword'),
+                                 follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'testfile.txt', response.data)
+
 
 if __name__ == '__main__':
     unittest.main()
