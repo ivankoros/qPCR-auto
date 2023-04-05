@@ -39,6 +39,34 @@ class FlaskAppTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'testfile.txt', response.data)
 
+    def test_login_failed(self):
+        response = self.app.post('/login',
+                                 data=dict(username='wronguser', password='wrongpassword'),
+                                 follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Invalid username', response.data)
+
+    def test_register_successful(self):
+        with patch.dict(os.environ, {'REGISTRATION_KEY': 'testkey'}):
+            response = self.app.post('/register',
+                                     data=dict(username='newuser',
+                                               password='newpassword',
+                                               registration_key='testkey'),
+                                     follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'User created successfully', response.data)
+
+    def test_register_failed(self):
+        with patch.dict(os.environ, {'REGISTRATION_KEY': 'testkey'}):
+            response = self.app.post('/register',
+                                     data=dict(username='newuser',
+                                               password='newpassword',
+                                               registration_key='wrongkey'),
+                                     follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Invalid registration key', response.data)
+
+
 
 if __name__ == '__main__':
     unittest.main()
