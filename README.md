@@ -32,7 +32,7 @@ A Python/Javascript web app designed to streamline longitudinal, lab-specific ex
 1. Clone the repository
 
 ```bash
-git clone https://github.com/user/qPCR-auto.git
+git clone https://github.com/ivankoros/qPCR-auto.git
 ```
 2. Install Python dependencies
 ```python
