@@ -66,6 +66,24 @@ class FlaskAppTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'Invalid registration key', response.data)
 
+    def test_login_required(self):
+        response = self.app.get('/', follow_redirects=True)
+        self.assertIn(b'Login', response.data)
+
+    def test_upload_file(self):
+        self.app.post('/login',
+                      data=dict(username='testuser', password='testpassword'),
+                      follow_redirects=True)
+
+        with open('tests/testfiles/raw_counts.xlsx', 'rb') as raw_counts:
+            with open('tests/testfiles/plate_diagram.xlsx', 'rb') as plate_diagram:
+                response = self.app.post('/process',
+                                         data=dict(raw_counts=raw_counts, plate_diagram=plate_diagram),
+                                         follow_redirects=True,
+                                         content_type='multipart/form-data')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'success', response.data)
+
 
 
 if __name__ == '__main__':
