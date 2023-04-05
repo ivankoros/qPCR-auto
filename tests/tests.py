@@ -115,10 +115,10 @@ class FlaskAppTests(unittest.TestCase):
                       data=dict(username='testuser', password='testpassword'),
                       follow_redirects=True)
 
-        with open('tests/testfiles/raw_counts.xlsx', 'rb') as raw_counts:
-            with open('tests/testfiles/plate_diagram.xlsx', 'rb') as plate_diagram:
+        with open('tests/testfiles/correct_raw_counts.xlsx', 'rb') as correct_raw_counts:
+            with open('tests/testfiles/plate_diagram.xlsx', 'rb') as correct_plate_diagram:
                 response = self.app.post('/process',
-                                         data=dict(raw_counts=raw_counts, plate_diagram=plate_diagram),
+                                         data=dict(raw_counts=correct_raw_counts, plate_diagram=correct_plate_diagram),
                                          follow_redirects=True,
                                          content_type='multipart/form-data')
         self.assertEqual(response.status_code, 200)
@@ -131,9 +131,9 @@ class FlaskAppTests(unittest.TestCase):
          dimensions, allowing for accurate processing of valid files in the application.
         :return:
         """
-        with open('tests/testfiles/raw_counts.xlsx', 'rb') as file:
+        with open('tests/testfiles/correct_raw_counts.xlsx', 'rb') as correct_raw_counts:
             response = self.app.post('/validate_file/96x16',
-                                     data=dict(file=file),
+                                     data=dict(file=correct_raw_counts),
                                      content_type='multipart/form-data')
 
         self.assertIn(b'true', response.data)
@@ -146,9 +146,9 @@ class FlaskAppTests(unittest.TestCase):
         errors.
 
         """
-        with open('tests/testfiles/invalid_dimensions.xlsx' 'rb') as file:
+        with open('tests/testfiles/incorrect_raw_counts.xlsx' 'rb') as incorrect_raw_counts:
             response = self.app.post('/validate_file/96x16',
-                                     data=dict(file=file),
+                                     data=dict(file=incorrect_raw_counts),
                                      content_type='multipart/form-data')
 
         self.assertIn(b'false', response.data)
